@@ -1,0 +1,36 @@
+# /etc/mosquitto/conf.d/bichongos.conf
+# Copiar este archivo a /etc/mosquitto/conf.d/bichongos.conf en el RPi
+# Después ejecutar: sudo systemctl restart mosquitto
+
+# ─── Red ───────────────────────────────────────────────────────────────────
+listener 1883
+bind_address 0.0.0.0
+
+# ─── Autenticación (obligatoria — no permitir acceso anónimo) ──────────────
+allow_anonymous false
+password_file /etc/mosquitto/passwd
+
+# Crear usuarios con:
+#   sudo mosquitto_passwd -c /etc/mosquitto/passwd gateway
+#   sudo mosquitto_passwd /etc/mosquitto/passwd capsula-01
+#   sudo mosquitto_passwd /etc/mosquitto/passwd capsula-02
+# (sin -c después del primero para no sobreescribir el archivo)
+
+# ─── ACL — Control de acceso por tópico ────────────────────────────────────
+acl_file /etc/mosquitto/acl
+
+# ─── Persistencia ──────────────────────────────────────────────────────────
+persistence true
+persistence_location /var/lib/mosquitto/
+
+# ─── Logging ───────────────────────────────────────────────────────────────
+log_dest file /var/log/mosquitto/mosquitto.log
+log_type error
+log_type warning
+log_type notice
+log_timestamp true
+
+# ─── Límites de conexión ───────────────────────────────────────────────────
+max_connections 50
+max_inflight_messages 20
+message_size_limit 65536

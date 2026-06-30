@@ -13,7 +13,7 @@
 |-------|-------------|------------|-------------|-----------|
 | E1 — Infraestructura Física | 16 | 0 | 0 | 16 |
 | E2 — IoT / Firmware | 20 | 14 | 0 | 6 |
-| E3 — Gateway & Dashboard Local | 10 | 0 | 0 | 10 |
+| E3 — Gateway & Dashboard Local | 10 | 8 | 0 | 2 |
 | E4 — Nube & Alertas | 6 | 0 | 0 | 6 |
 | E5 — Web App | 14 | 0 | 0 | 14 |
 | E6 — App Móvil | 6 | 0 | 0 | 6 |
@@ -25,7 +25,7 @@
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
-| **Total** | **149** | **41** | **0** | **108** |
+| **Total** | **149** | **49** | **0** | **100** |
 
 ---
 
@@ -89,14 +89,14 @@
 
 | ID | Tarea | Prioridad | Fase | Estado |
 |----|-------|-----------|------|--------|
-| GW-01 | Instalar Raspberry Pi OS + configuración inicial | 🔴 | 1 | 🔲 |
-| GW-02 | Instalar y configurar Mosquitto (broker MQTT) | 🔴 | 1 | 🔲 |
-| GW-03 | Instalar Node-RED + flujos básicos de control | 🔴 | 1 | 🔲 |
-| GW-04 | Node-RED: leer MQTT y persistir en InfluxDB | 🔴 | 1 | 🔲 |
-| GW-05 | Instalar InfluxDB (base de datos de serie temporal) | 🔴 | 1 | 🔲 |
-| GW-06 | Instalar Grafana + dashboard inicial (temp, HR, CO₂ por cápsula) | 🔴 | 1 | 🔲 |
-| GW-07 | Node-RED: lógica de alertas (si no hay datos en 5 min → alerta) | 🟡 | 1 | 🔲 |
-| GW-08 | Configurar backup automático a Firebase | 🟡 | 1 | 🔲 |
+| GW-01 | Instalar Raspberry Pi OS + configuración inicial | 🔴 | 1 | ✅ |
+| GW-02 | Instalar y configurar Mosquitto (broker MQTT) | 🔴 | 1 | ✅ |
+| GW-03 | Instalar Node-RED + flujos básicos de control | 🔴 | 1 | ✅ |
+| GW-04 | Node-RED: leer MQTT y persistir en InfluxDB | 🔴 | 1 | ✅ |
+| GW-05 | Instalar InfluxDB (base de datos de serie temporal) | 🔴 | 1 | ✅ |
+| GW-06 | Instalar Grafana + dashboard inicial (temp, HR, CO₂ por cápsula) | 🔴 | 1 | ✅ |
+| GW-07 | Node-RED: lógica de alertas (si no hay datos en 5 min → alerta) | 🟡 | 1 | ✅ |
+| GW-08 | Configurar backup automático a Firebase | 🟡 | 1 | ✅ |
 | GW-09 | Configurar UPS y script de shutdown seguro | 🟡 | 1 | 🔲 |
 | GW-10 | Documentar flujos Node-RED y exportar `node-red-flows.json` | 🟡 | 1 | 🔲 |
 

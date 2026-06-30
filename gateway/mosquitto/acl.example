@@ -1,0 +1,40 @@
+# /etc/mosquitto/acl
+# ACL (Access Control List) para Mosquitto — Bichongos
+# Copiar a /etc/mosquitto/acl en el RPi
+# Reiniciar Mosquitto después de cada cambio
+
+# ─── gateway (Node-RED en el RPi) ──────────────────────────────────────────
+# El gateway puede leer de todas las cápsulas y escribir profile/set y ota
+user gateway
+topic readwrite bichongos/#
+
+# ─── admin (acceso de superusuario para diagnóstico) ───────────────────────
+user admin
+topic readwrite bichongos/#
+topic readwrite $SYS/#
+
+# ─── Cada cápsula solo puede publicar en su propio namespace ───────────────
+# y suscribirse a sus propios comandos entrantes
+
+user capsula-01
+topic write  bichongos/capsula-01/sensors
+topic write  bichongos/capsula-01/status
+topic write  bichongos/capsula-01/alert
+topic read   bichongos/capsula-01/profile/set
+topic read   bichongos/capsula-01/ota
+
+user capsula-02
+topic write  bichongos/capsula-02/sensors
+topic write  bichongos/capsula-02/status
+topic write  bichongos/capsula-02/alert
+topic read   bichongos/capsula-02/profile/set
+topic read   bichongos/capsula-02/ota
+
+user capsula-03
+topic write  bichongos/capsula-03/sensors
+topic write  bichongos/capsula-03/status
+topic write  bichongos/capsula-03/alert
+topic read   bichongos/capsula-03/profile/set
+topic read   bichongos/capsula-03/ota
+
+# Agregar un bloque por cada cápsula adicional con el mismo patrón

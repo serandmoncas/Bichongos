@@ -1,0 +1,277 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB_BICHONGOS",
+      "label": "InfluxDB Bichongos",
+      "description": "Datasource InfluxDB configurado en Grafana",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    { "type": "grafana", "id": "grafana", "name": "Grafana", "version": "10.0.0" },
+    { "type": "datasource", "id": "influxdb", "name": "InfluxDB", "version": "1.0.0" },
+    { "type": "panel", "id": "gauge", "name": "Gauge", "version": "" },
+    { "type": "panel", "id": "timeseries", "name": "Time series", "version": "" },
+    { "type": "panel", "id": "stat", "name": "Stat", "version": "" },
+    { "type": "panel", "id": "table", "name": "Table", "version": "" }
+  ],
+  "annotations": { "list": [] },
+  "description": "Dashboard de monitoreo de cápsulas Bichongos — temperatura, humedad, CO₂, luz y actuadores",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 100,
+      "title": "Estado en Tiempo Real",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "blue", "value": null },
+              { "color": "green", "value": 14 },
+              { "color": "yellow", "value": 22 },
+              { "color": "red", "value": 26 }
+            ]
+          },
+          "unit": "celsius",
+          "min": 5, "max": 35
+        },
+        "overrides": []
+      },
+      "gridPos": { "h": 6, "w": 4, "x": 0, "y": 1 },
+      "id": 1,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "orientation": "auto", "showThresholdLabels": false, "showThresholdMarkers": true },
+      "title": "Temperatura Aire",
+      "type": "gauge",
+      "targets": [
+        {
+          "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -10m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\n  |> filter(fn: (r) => r[\"capsula_id\"] == \"${capsula}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperatura\")\n  |> last()",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 70 },
+              { "color": "green", "value": 80 },
+              { "color": "yellow", "value": 95 }
+            ]
+          },
+          "unit": "percent",
+          "min": 40, "max": 100
+        }
+      },
+      "gridPos": { "h": 6, "w": 4, "x": 4, "y": 1 },
+      "id": 2,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "orientation": "auto" },
+      "title": "Humedad Relativa",
+      "type": "gauge",
+      "targets": [
+        {
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -10m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\n  |> filter(fn: (r) => r[\"capsula_id\"] == \"${capsula}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"humedad\")\n  |> last()",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 800 },
+              { "color": "red", "value": 1200 }
+            ]
+          },
+          "unit": "ppm",
+          "min": 400, "max": 3000
+        }
+      },
+      "gridPos": { "h": 6, "w": 4, "x": 8, "y": 1 },
+      "id": 3,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "CO₂",
+      "type": "gauge",
+      "targets": [
+        {
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -10m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\n  |> filter(fn: (r) => r[\"capsula_id\"] == \"${capsula}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"co2_ppm\")\n  |> last()",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "blue", "value": null },
+              { "color": "green", "value": 10 }
+            ]
+          },
+          "unit": "lux",
+          "min": 0, "max": 2000
+        }
+      },
+      "gridPos": { "h": 6, "w": 4, "x": 12, "y": 1 },
+      "id": 4,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Luz",
+      "type": "gauge",
+      "targets": [
+        {
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -10m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\n  |> filter(fn: (r) => r[\"capsula_id\"] == \"${capsula}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"luz_lux\")\n  |> last()",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "blue", "value": null },
+              { "color": "green", "value": 15 },
+              { "color": "red", "value": 35 }
+            ]
+          },
+          "unit": "celsius",
+          "min": 5, "max": 40
+        }
+      },
+      "gridPos": { "h": 6, "w": 4, "x": 16, "y": 1 },
+      "id": 5,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Temp. Sustrato",
+      "type": "gauge",
+      "targets": [
+        {
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -10m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\n  |> filter(fn: (r) => r[\"capsula_id\"] == \"${capsula}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temp_sustrato\")\n  |> last()",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 7 },
+      "id": 101,
+      "title": "Histórico últimas 24 horas",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": {
+        "defaults": { "unit": "celsius", "color": { "mode": "palette-classic" } },
+        "overrides": [
+          { "matcher": { "id": "byName", "options": "humedad" }, "properties": [{ "id": "unit", "value": "percent" }, { "id": "custom.axisPlacement", "value": "right" }] }
+        ]
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "id": 10,
+      "options": { "tooltip": { "mode": "multi" }, "legend": { "displayMode": "list", "placement": "bottom" } },
+      "title": "Temperatura y Humedad — 24h",
+      "type": "timeseries",
+      "targets": [
+        {
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\n  |> filter(fn: (r) => r[\"capsula_id\"] == \"${capsula}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperatura\" or r[\"_field\"] == \"humedad\")\n  |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": {
+        "defaults": { "unit": "ppm", "color": { "mode": "fixed", "fixedColor": "orange" } }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "id": 11,
+      "title": "CO₂ — 24h",
+      "type": "timeseries",
+      "targets": [
+        {
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\")\n  |> filter(fn: (r) => r[\"capsula_id\"] == \"${capsula}\")\n  |> filter(fn: (r) => r[\"_field\"] == \"co2_ppm\")\n  |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 16 },
+      "id": 102,
+      "title": "Alertas recientes",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" } } },
+      "gridPos": { "h": 6, "w": 24, "x": 0, "y": 17 },
+      "id": 20,
+      "options": { "showHeader": true, "sortBy": [{ "displayName": "Time", "desc": true }] },
+      "title": "Historial de alertas — últimas 24h",
+      "type": "table",
+      "targets": [
+        {
+          "query": "from(bucket: \"capsulas\")\n  |> range(start: -24h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"alerts\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 38,
+  "tags": ["bichongos", "iot", "capsulas"],
+  "templating": {
+    "list": [
+      {
+        "current": { "text": "capsula-01", "value": "capsula-01" },
+        "datasource": { "type": "influxdb", "uid": "${DS_INFLUXDB_BICHONGOS}" },
+        "definition": "from(bucket: \"capsulas\") |> range(start: -1h) |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\") |> keep(columns: [\"capsula_id\"]) |> distinct(column: \"capsula_id\")",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Cápsula",
+        "name": "capsula",
+        "options": [],
+        "query": "from(bucket: \"capsulas\") |> range(start: -1h) |> filter(fn: (r) => r[\"_measurement\"] == \"sensors\") |> keep(columns: [\"capsula_id\"]) |> distinct(column: \"capsula_id\")",
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": { "from": "now-24h", "to": "now" },
+  "timepicker": {},
+  "timezone": "America/Bogota",
+  "title": "Bichongos — Cápsulas",
+  "uid": "bichongos-capsulas-v1",
+  "version": 1
+}

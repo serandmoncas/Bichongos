@@ -1,0 +1,270 @@
+[
+  {
+    "id": "tab-bichongos-main",
+    "type": "tab",
+    "label": "Bichongos — Principal",
+    "disabled": false
+  },
+  {
+    "id": "tab-bichongos-alerts",
+    "type": "tab",
+    "label": "Bichongos — Alertas",
+    "disabled": false
+  },
+  {
+    "id": "tab-bichongos-firebase",
+    "type": "tab",
+    "label": "Bichongos — Firebase",
+    "disabled": false
+  },
+
+  {
+    "id": "mqtt-broker-local",
+    "type": "mqtt-broker",
+    "name": "Mosquitto Local",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "nodered-gateway",
+    "autoConnect": true,
+    "usetls": false,
+    "credentials": {
+      "user": "gateway",
+      "password": ""
+    }
+  },
+
+  {
+    "id": "influxdb-config",
+    "type": "influxdb",
+    "hostname": "localhost",
+    "port": "8086",
+    "protocol": "http",
+    "database": "capsulas",
+    "name": "InfluxDB Bichongos",
+    "usetls": false,
+    "influxdbVersion": "2.0",
+    "url": "http://localhost:8086",
+    "rejectUnauthorized": false
+  },
+
+  {
+    "id": "telegram-config",
+    "type": "telegram bot",
+    "botname": "BichongosBot",
+    "usernames": "",
+    "chatids": ""
+  },
+
+  {
+    "id": "node-mqtt-sensors-in",
+    "type": "mqtt in",
+    "z": "tab-bichongos-main",
+    "name": "MQTT sensors (todas las cápsulas)",
+    "topic": "bichongos/+/sensors",
+    "qos": "1",
+    "broker": "mqtt-broker-local",
+    "x": 120,
+    "y": 100,
+    "wires": [["node-json-parse-sensors"]]
+  },
+  {
+    "id": "node-json-parse-sensors",
+    "type": "json",
+    "z": "tab-bichongos-main",
+    "name": "Parsear JSON",
+    "action": "obj",
+    "x": 340,
+    "y": 100,
+    "wires": [["node-influx-write", "node-firebase-throttle", "node-debug-sensors"]]
+  },
+  {
+    "id": "node-influx-write",
+    "type": "influxdb out",
+    "z": "tab-bichongos-main",
+    "influxdb": "influxdb-config",
+    "name": "Escribir en InfluxDB",
+    "measurement": "sensors",
+    "precision": "s",
+    "retentionPolicy": "",
+    "database": "capsulas",
+    "precisionV18FluxV20": "s",
+    "org": "bichongos",
+    "bucket": "capsulas",
+    "x": 600,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "node-firebase-throttle",
+    "type": "delay",
+    "z": "tab-bichongos-main",
+    "name": "Rate limit 5 min (Firebase)",
+    "pauseType": "rate",
+    "timeout": "5",
+    "timeoutUnits": "minutes",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "minute",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "x": 600,
+    "y": 120,
+    "wires": [["node-firebase-out"]]
+  },
+  {
+    "id": "node-firebase-out",
+    "type": "function",
+    "z": "tab-bichongos-firebase",
+    "name": "Formatear para Firebase",
+    "func": "const d = msg.payload;\nconst capsulaId = d.capsula_id || 'unknown';\n\nmsg.payload = {\n    method: 'SET',\n    path: `/capsulas/${capsulaId}/estado_actual`,\n    data: {\n        temperatura: d.temperatura,\n        humedad: d.humedad,\n        co2_ppm: d.co2_ppm,\n        luz_lux: d.luz_lux,\n        temp_sustrato: d.temp_sustrato,\n        especie: d.especie,\n        etapa: d.etapa,\n        actuadores: d.actuadores,\n        timestamp: d.timestamp,\n        ultima_actualizacion: new Date().toISOString()\n    }\n};\nreturn msg;",
+    "x": 340,
+    "y": 200,
+    "wires": [["node-firebase-request"]]
+  },
+  {
+    "id": "node-firebase-request",
+    "type": "http request",
+    "z": "tab-bichongos-firebase",
+    "name": "Firebase REST API",
+    "method": "PUT",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "x": 580,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "node-debug-sensors",
+    "type": "debug",
+    "z": "tab-bichongos-main",
+    "name": "Debug sensores",
+    "active": false,
+    "tosidebar": true,
+    "x": 600,
+    "y": 180,
+    "wires": []
+  },
+
+  {
+    "id": "node-mqtt-alerts-in",
+    "type": "mqtt in",
+    "z": "tab-bichongos-alerts",
+    "name": "MQTT alerts",
+    "topic": "bichongos/+/alert",
+    "qos": "2",
+    "broker": "mqtt-broker-local",
+    "x": 120,
+    "y": 100,
+    "wires": [["node-alert-json"]]
+  },
+  {
+    "id": "node-alert-json",
+    "type": "json",
+    "z": "tab-bichongos-alerts",
+    "name": "Parsear alerta",
+    "action": "obj",
+    "x": 320,
+    "y": 100,
+    "wires": [["node-alert-influx", "node-alert-format-telegram"]]
+  },
+  {
+    "id": "node-alert-influx",
+    "type": "influxdb out",
+    "z": "tab-bichongos-alerts",
+    "influxdb": "influxdb-config",
+    "name": "Registrar alerta en InfluxDB",
+    "measurement": "alerts",
+    "precision": "s",
+    "org": "bichongos",
+    "bucket": "capsulas",
+    "x": 560,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "node-alert-format-telegram",
+    "type": "function",
+    "z": "tab-bichongos-alerts",
+    "name": "Formatear mensaje Telegram",
+    "func": "const a = msg.payload;\nconst tipo = a.tipo || 'desconocido';\nconst capsula = a.capsula_id || '?';\nconst valor = a.valor_actual !== undefined ? parseFloat(a.valor_actual).toFixed(1) : '?';\nconst umbral = a.umbral !== undefined ? parseFloat(a.umbral).toFixed(1) : '?';\nconst accion = a.accion || 'ninguna';\nconst hora = new Date().toLocaleTimeString('es-CO', { timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit' });\n\nconst emojis = {\n    temp_critica_max: '🌡️🔴',\n    temp_critica_min: '🌡️🔵',\n    humedad_critica_min: '💧🔴',\n    co2_critico_max: '💨🔴',\n    sensor_error: '⚠️'\n};\nconst emoji = emojis[tipo] || '🔔';\n\nmsg.payload = {\n    chatId: process.env.TELEGRAM_CHAT_ID,\n    type: 'message',\n    content: `${emoji} *ALERTA — ${capsula.toUpperCase()}*\\n` +\n             `──────────────────────\\n` +\n             `Tipo: \\`${tipo}\\`\\n` +\n             `Valor actual: *${valor}*\\n` +\n             `Límite: ${umbral}\\n` +\n             `Acción: ${accion}\\n` +\n             `Hora: ${hora}\\n` +\n             `──────────────────────`,\n    options: { parse_mode: 'Markdown' }\n};\nreturn msg;",
+    "x": 560,
+    "y": 120,
+    "wires": [["node-telegram-out"]]
+  },
+  {
+    "id": "node-telegram-out",
+    "type": "telegram sender",
+    "z": "tab-bichongos-alerts",
+    "name": "Enviar Telegram",
+    "bot": "telegram-config",
+    "x": 780,
+    "y": 120,
+    "wires": []
+  },
+
+  {
+    "id": "node-watchdog-inject",
+    "type": "inject",
+    "z": "tab-bichongos-alerts",
+    "name": "Watchdog cada 5 min",
+    "props": [{ "p": "payload" }],
+    "repeat": "300",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "30",
+    "x": 130,
+    "y": 240,
+    "wires": [["node-watchdog-check"]]
+  },
+  {
+    "id": "node-watchdog-check",
+    "type": "function",
+    "z": "tab-bichongos-alerts",
+    "name": "Verificar cápsulas activas",
+    "func": "// Contexto compartido: el nodo de sensores actualiza context.global.lastSeen\n// cuando recibe datos de cada cápsula.\n// Este watchdog verifica que ninguna lleve más de 10 min sin publicar.\nconst now = Date.now();\nconst lastSeen = global.get('lastSeen') || {};\nconst TIMEOUT_MS = 10 * 60 * 1000; // 10 min\n\nconst silent = Object.entries(lastSeen)\n    .filter(([id, ts]) => (now - ts) > TIMEOUT_MS)\n    .map(([id]) => id);\n\nif (silent.length > 0) {\n    msg.payload = {\n        chatId: process.env.TELEGRAM_CHAT_ID,\n        type: 'message',\n        content: `⚠️ *SIN DATOS* — Cápsulas sin respuesta (>10 min):\\n${silent.map(id => `• ${id}`).join('\\n')}`,\n        options: { parse_mode: 'Markdown' }\n    };\n    return msg;\n}\nreturn null; // sin alerta si todas están bien",
+    "x": 360,
+    "y": 240,
+    "wires": [["node-telegram-out"]]
+  },
+
+  {
+    "id": "node-daily-summary-inject",
+    "type": "inject",
+    "z": "tab-bichongos-alerts",
+    "name": "Resumen diario 07:00",
+    "props": [{ "p": "payload" }],
+    "repeat": "",
+    "crontab": "0 7 * * *",
+    "once": false,
+    "x": 130,
+    "y": 320,
+    "wires": [["node-daily-summary"]]
+  },
+  {
+    "id": "node-daily-summary",
+    "type": "function",
+    "z": "tab-bichongos-alerts",
+    "name": "Generar resumen matutino",
+    "func": "const lastSeen = global.get('lastSeen') || {};\nconst now = Date.now();\nconst TIMEOUT_MS = 10 * 60 * 1000;\n\nconst activas = Object.entries(lastSeen)\n    .filter(([id, ts]) => (now - ts) <= TIMEOUT_MS)\n    .map(([id]) => `✅ ${id}`);\nconst inactivas = Object.entries(lastSeen)\n    .filter(([id, ts]) => (now - ts) > TIMEOUT_MS)\n    .map(([id]) => `❌ ${id}`);\n\nconst fecha = new Date().toLocaleDateString('es-CO', { timeZone: 'America/Bogota', weekday: 'long', day: 'numeric', month: 'long' });\n\nmsg.payload = {\n    chatId: process.env.TELEGRAM_CHAT_ID,\n    type: 'message',\n    content: `☀️ *Buenos días — Bichongos*\\n${fecha}\\n\\n` +\n             `*Cápsulas activas (${activas.length}):*\\n${activas.join('\\n') || 'Ninguna'}\\n\\n` +\n             (inactivas.length > 0 ? `*Sin datos (${inactivas.length}):*\\n${inactivas.join('\\n')}` : ''),\n    options: { parse_mode: 'Markdown' }\n};\nreturn msg;",
+    "x": 360,
+    "y": 320,
+    "wires": [["node-telegram-out"]]
+  },
+
+  {
+    "id": "node-lastseen-update",
+    "type": "function",
+    "z": "tab-bichongos-main",
+    "name": "Actualizar lastSeen en contexto",
+    "func": "const d = msg.payload;\nif (d && d.capsula_id) {\n    const lastSeen = global.get('lastSeen') || {};\n    lastSeen[d.capsula_id] = Date.now();\n    global.set('lastSeen', lastSeen);\n}\nreturn msg;",
+    "x": 580,
+    "y": 240,
+    "wires": []
+  }
+]

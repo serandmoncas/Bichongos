@@ -4,7 +4,7 @@
  *
  * Dependencias (Gestor de Librerías Arduino):
  *   PubSubClient ≥ 2.8 · ArduinoJson ≥ 7.x · Adafruit SHT31 ≥ 2.2
- *   BH1750 ≥ 1.3 · MHZ19 ≥ 1.5 · OneWire · DallasTemperature
+ *   BH1750 ≥ 1.3 · MHZ19 ≥ 1.5 · OneWire · DallasTemperature · Preferences (builtin)
  *
  * Ver docs/capsula/diagrama-electrico-capsula-mini.md para pinout y cableado.
  * Ver firmware/profiles/ para los perfiles JSON de cada especie.
@@ -18,6 +18,7 @@
 #include "actuators.h"
 #include "profile.h"
 #include "mqtt_client.h"
+#include "stage_tracker.h"
 
 // ─── Constantes de tiempo ──────────────────────────────────────────────────
 static const unsigned long SENSOR_INTERVAL_MS  = 30000UL; // ciclo normal
@@ -41,6 +42,7 @@ void onProfileSet(const char* newProfile, const char* newStage) {
   Serial.printf("[MAIN] Cambio de etapa solicitado → perfil:%s etapa:%s\n",
                 newProfile, newStage);
   if (reloadProfileStage(newStage, activeProfile)) {
+    stageTrackerSetStage(newStage);  // reiniciar contador de días
     Serial.printf("[MAIN] Etapa actualizada a '%s'\n", newStage);
     mqttPublishStatus(getCurrentActuatorState(), activeProfile);
   } else {
@@ -160,6 +162,7 @@ void setup() {
 
   initActuators();
   initSensors();
+  stageTrackerInit();
 
   if (!loadProfile(PROFILE_PATH, activeProfile)) {
     Serial.println("[MAIN] CRITICO: sin perfil. Entrando en modo seguro mínimo.");
@@ -173,6 +176,12 @@ void setup() {
   if (wifiConnected()) {
     Serial.printf("[WIFI] Conectado — IP: %s\n", WiFi.localIP().toString().c_str());
     configTime(GMT_OFFSET_SEC, DAYLIGHT_OFFSET_SEC, NTP_SERVER);
+    // Actualizar startTime en NVS si se guardó sin NTP (era 0)
+    StageInfo si = stageTrackerGet();
+    if (si.startTime == 0 && strlen(si.stage) > 0) {
+      delay(1500); // esperar primer sync NTP
+      stageTrackerSetStage(si.stage);
+    }
     mqttInit(wifiClient, onProfileSet, onOtaTrigger);
     mqttConnect();
     setupOta();
@@ -244,6 +253,17 @@ void loop() {
     if (++statusCounter >= 5) {
       statusCounter = 0;
       mqttPublishStatus(getCurrentActuatorState(), activeProfile);
+    }
+
+    // Alerta de fin de etapa — una vez por día cuando se cumple duracion_dias
+    if (stageTrackerShouldAlert(activeProfile.etapa.duracionDias)) {
+      StageInfo si = stageTrackerGet();
+      char msg[128];
+      snprintf(msg, sizeof(msg), "etapa_%s_completada", activeProfile.etapaActual);
+      mqttPublishAlert(msg,
+                       (float)si.dayElapsed,
+                       (float)activeProfile.etapa.duracionDias,
+                       "revisar_y_cambiar_etapa");
     }
   }
   // En modo offline: el ESP32 sigue leyendo y controlando — sin publicar

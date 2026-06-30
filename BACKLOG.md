@@ -12,20 +12,20 @@
 | Épica | Total tareas | Completadas | En progreso | Pendientes |
 |-------|-------------|------------|-------------|-----------|
 | E1 — Infraestructura Física | 16 | 0 | 0 | 16 |
-| E2 — IoT / Firmware | 20 | 14 | 0 | 6 |
-| E3 — Gateway & Dashboard Local | 10 | 8 | 0 | 2 |
+| E2 — IoT / Firmware | 20 | 17 | 0 | 3 |
+| E3 — Gateway & Dashboard Local | 10 | 10 | 0 | 0 |
 | E4 — Nube & Alertas | 6 | 0 | 0 | 6 |
 | E5 — Web App | 14 | 0 | 0 | 14 |
 | E6 — App Móvil | 6 | 0 | 0 | 6 |
 | E7 — Módulo Financiero | 8 | 0 | 0 | 8 |
 | E8 — Multi-sede | 6 | 0 | 0 | 6 |
 | E9 — Producción / Cultivo | 20 | 0 | 0 | 20 |
-| E10 — Documentación | 22 | 17 | 0 | 5 |
+| E10 — Documentación | 22 | 19 | 0 | 3 |
 | E11 — Validación Comercial | 6 | 0 | 0 | 6 |
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
-| **Total** | **149** | **49** | **0** | **100** |
+| **Total** | **149** | **59** | **0** | **90** |
 
 ---
 
@@ -73,12 +73,12 @@
 | IOT-11 | Firmware: alertas MQTT si sensor fuera de rango crítico | 🔴 | 1 | ✅ |
 | IOT-12 | Firmware: protección de relés (tiempo mínimo entre encendidos) | 🔴 | 1 | ✅ |
 | IOT-13 | Firmware: timer de iluminación (ciclo luz/oscuridad por perfil) | 🟡 | 1 | ✅ |
-| IOT-14 | Firmware: contador de días por etapa y notificación de fin de etapa | 🟡 | 2 | 🔲 |
+| IOT-14 | Firmware: contador de días por etapa y notificación de fin de etapa | 🟡 | 2 | ✅ |
 | IOT-15 | Firmware: OTA updates (actualización remota del firmware) | 🟢 | 2 | ✅ |
 | IOT-16 | Firmware: soporte de múltiples perfiles (cambio de etapa remoto vía MQTT) | 🟢 | 2 | ✅ |
 | IOT-17 | Crear `config.h.example` con template de credenciales WiFi/MQTT | 🔴 | 1 | ✅ |
 | IOT-18 | Probar firmware en cápsula Mini con orellana (primer ciclo real) | 🔴 | 1 | 🔲 |
-| IOT-19 | Definir y documentar protocolo de calibración de sensores (SHT31, MH-Z19B) | 🔴 | 1 | 🔲 |
+| IOT-19 | Definir y documentar protocolo de calibración de sensores (SHT31, MH-Z19B) | 🔴 | 1 | ✅ |
 | IOT-20 | Escribir spec del modo seguro: comportamiento del ESP32 sin WiFi y sin MQTT | 🔴 | 1 | ✅ |
 
 ---
@@ -97,8 +97,8 @@
 | GW-06 | Instalar Grafana + dashboard inicial (temp, HR, CO₂ por cápsula) | 🔴 | 1 | ✅ |
 | GW-07 | Node-RED: lógica de alertas (si no hay datos en 5 min → alerta) | 🟡 | 1 | ✅ |
 | GW-08 | Configurar backup automático a Firebase | 🟡 | 1 | ✅ |
-| GW-09 | Configurar UPS y script de shutdown seguro | 🟡 | 1 | 🔲 |
-| GW-10 | Documentar flujos Node-RED y exportar `node-red-flows.json` | 🟡 | 1 | 🔲 |
+| GW-09 | Configurar UPS y script de shutdown seguro | 🟡 | 1 | ✅ |
+| GW-10 | Documentar flujos Node-RED y exportar `node-red-flows.json` | 🟡 | 1 | ✅ |
 
 ---
 
@@ -239,8 +239,8 @@
 | DOC-15 | CLAUDE.md — actualizar con estructura real | 🟡 | 0 | ✅ |
 | DOC-16 | gateway/README.md — guía de instalación RPi | 🟡 | 1 | ✅ |
 | DOC-17 | firmware/capsula_core/README.md — guía de firmware | 🔴 | 1 | ✅ |
-| DOC-18 | docs/protocolos/SOP-agar.md — trabajo en agar | 🟡 | 2 | 🔲 |
-| DOC-19 | docs/protocolos/SOP-banco-cepas.md — preservación de cepas | 🟡 | 2 | 🔲 |
+| DOC-18 | docs/protocolos/SOP-agar.md — trabajo en agar | 🟡 | 2 | ✅ |
+| DOC-19 | docs/protocolos/SOP-banco-cepas.md — preservación de cepas | 🟡 | 2 | ✅ |
 | DOC-20 | Playbook nueva sede (guía de replicación) | 🟢 | 4 | 🔲 |
 | DOC-21 | Documento de KPIs y criterios de éxito del sistema (tasa contaminación, BE%, SLA) | 🔴 | 0 | ✅ |
 | DOC-22 | Registro de línea de base ambiental del invernadero (7 días de medición real) | 🔴 | 0 | ✅ |

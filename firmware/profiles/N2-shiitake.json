@@ -1,0 +1,64 @@
+{
+  "id": "N2-shiitake",
+  "especie": "Lentinula edodes",
+  "nombre_comun": "Shiitake",
+  "nivel_dificultad": 2,
+  "categoria": "gourmet",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 20,
+      "temp_max": 25,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 60,
+      "choque_frio": false
+    },
+    "maduracion_browning": {
+      "temp_min": 18,
+      "temp_max": 22,
+      "humedad_min": 65,
+      "humedad_max": 70,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 10,
+      "choque_frio": false
+    },
+    "induccion": {
+      "temp_min": 8,
+      "temp_max": 12,
+      "humedad_min": 85,
+      "humedad_max": 95,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 1,
+      "choque_frio": true,
+      "temp_choque": 10,
+      "duracion_choque_horas": 12,
+      "induccion_inmersion": true,
+      "duracion_inmersion_horas": 8
+    },
+    "fructificacion": {
+      "temp_min": 15,
+      "temp_max": 22,
+      "humedad_min": 85,
+      "humedad_max": 95,
+      "co2_max": 1000,
+      "luz_horas": 12,
+      "luz_inicio": "07:00",
+      "luz_fin": "19:00",
+      "duracion_dias": 10,
+      "choque_frio": false
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 28,
+    "temp_critica_min": 12,
+    "humedad_critica_min": 80,
+    "co2_critico_max": 2000
+  },
+  "notas": "Requiere etapa de browning única. Choque de frío o inmersión obligatorio para inducir fructificación. Colonización lenta (60 días). Necesita calefacción en Guarne durante incubación nocturna."
+}

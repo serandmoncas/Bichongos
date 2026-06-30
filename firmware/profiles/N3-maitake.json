@@ -1,0 +1,51 @@
+{
+  "id": "N3-maitake",
+  "especie": "Grifola frondosa",
+  "nombre_comun": "Maitake",
+  "nivel_dificultad": 3,
+  "categoria": "gourmet_funcional",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 21,
+      "temp_max": 24,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 120,
+      "choque_frio": false
+    },
+    "induccion": {
+      "temp_min": 8,
+      "temp_max": 12,
+      "humedad_min": 85,
+      "humedad_max": 90,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 2,
+      "choque_frio": true,
+      "temp_choque": 10,
+      "duracion_choque_horas": 48
+    },
+    "fructificacion": {
+      "temp_min": 15,
+      "temp_max": 18,
+      "humedad_min": 85,
+      "humedad_max": 90,
+      "co2_max": 1000,
+      "luz_horas": 12,
+      "luz_inicio": "07:00",
+      "luz_fin": "19:00",
+      "duracion_dias": 18
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 22,
+    "temp_critica_min": 12,
+    "humedad_critica_min": 80,
+    "co2_critico_max": 2000
+  },
+  "notas": "PACIENCIA REQUERIDA: incubación más larga del proyecto (120 días). Micelio lento y gris-blanco. Registro fotográfico semanal obligatorio. Choque frío prolongado (48h) para inducción."
+}

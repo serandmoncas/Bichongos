@@ -1,0 +1,38 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Credenciales y configuración local (nunca en git)
+firmware/capsula_core/config.h
+firmware/capsula_core/secrets.h
+gateway/.env
+gateway/mosquitto_passwd
+webapp/.env
+webapp/.env.local
+
+# Compilados Arduino
+firmware/**/*.hex
+firmware/**/*.bin
+firmware/**/*.elf
+firmware/**/*.map
+firmware/build/
+
+# Node / webapp
+webapp/node_modules/
+webapp/.next/
+webapp/out/
+webapp/dist/
+
+# Python (herramientas de gateway)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Datos de sensores (volumen alto, backup en Firebase)
+gateway/influxdb-data/
+gateway/grafana-data/
+
+# Logs locales
+*.log
+gateway/logs/

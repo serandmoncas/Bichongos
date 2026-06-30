@@ -1,0 +1,41 @@
+{
+  "id": "N1-orellana",
+  "especie": "Pleurotus ostreatus",
+  "nombre_comun": "Orellana",
+  "nivel_dificultad": 1,
+  "categoria": "gourmet",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 20,
+      "temp_max": 24,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 18,
+      "choque_frio": false
+    },
+    "fructificacion": {
+      "temp_min": 14,
+      "temp_max": 20,
+      "humedad_min": 85,
+      "humedad_max": 95,
+      "co2_max": 1000,
+      "luz_horas": 12,
+      "luz_inicio": "07:00",
+      "luz_fin": "19:00",
+      "duracion_dias": 10,
+      "choque_frio": false,
+      "induccion_inmersion": false
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 26,
+    "temp_critica_min": 10,
+    "humedad_critica_min": 75,
+    "co2_critico_max": 2000
+  },
+  "notas": "Especie más tolerante del proyecto. Clima de Guarne (14-17°C) es ideal para fructificación sin climatización activa."
+}

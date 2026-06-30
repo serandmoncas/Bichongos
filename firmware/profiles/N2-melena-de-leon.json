@@ -1,0 +1,40 @@
+{
+  "id": "N2-melena-de-leon",
+  "especie": "Hericium erinaceus",
+  "nombre_comun": "Melena de León",
+  "nivel_dificultad": 2,
+  "categoria": "gourmet_funcional",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 22,
+      "temp_max": 26,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 25,
+      "choque_frio": false
+    },
+    "fructificacion": {
+      "temp_min": 18,
+      "temp_max": 24,
+      "humedad_min": 90,
+      "humedad_max": 95,
+      "co2_max": 700,
+      "luz_horas": 12,
+      "luz_inicio": "07:00",
+      "luz_fin": "19:00",
+      "duracion_dias": 18,
+      "choque_frio": false
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 26,
+    "temp_critica_min": 15,
+    "humedad_critica_min": 85,
+    "co2_critico_max": 1000
+  },
+  "notas": "CRÍTICO: CO2 máximo más bajo del proyecto (700ppm). Con CO2 alto produce dientes elongados en lugar de pompones. FAE debe operar con mayor frecuencia que en otras especies."
+}

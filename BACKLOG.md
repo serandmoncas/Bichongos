@@ -23,8 +23,9 @@
 | E10 — Documentación | 22 | 17 | 0 | 5 |
 | E11 — Validación Comercial | 6 | 0 | 0 | 6 |
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
-| E13 — Seguridad IoT | 6 | 0 | 0 | 6 |
-| **Total** | **145** | **17** | **0** | **128** |
+| E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
+| E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
+| **Total** | **149** | **27** | **0** | **122** |
 
 ---
 
@@ -290,6 +291,19 @@
 
 ---
 
+## ÉPICA 14 — Plan de Negocio
+
+> Documentación estratégica, modelos de negocio y proyecciones financieras.
+
+| ID | Tarea | Prioridad | Fase | Estado |
+|----|-------|-----------|------|--------|
+| BIZ-01 | Crear plan de negocio completo (mercado, operaciones, equipo, riesgos, hoja de ruta) | 🔴 | 0 | ✅ |
+| BIZ-02 | Business Model Canvas (Osterwalder) + Value Proposition Canvas + Lean Canvas | 🔴 | 0 | ✅ |
+| BIZ-03 | Modelo financiero a 5 años (P&L, flujo de caja, break-even, escenarios) | 🔴 | 0 | ✅ |
+| BIZ-04 | Diagrama de flujo del sistema completo (datos, control, alertas, ciclo de lote) | 🟡 | 0 | ✅ |
+
+---
+
 ## Mejoras Identificadas en el Análisis
 
 ### 🔴 Críticas (bloquean avance)
@@ -349,4 +363,4 @@
 
 ---
 
-*Bichongos · BACKLOG.md · Actualizado: 2026-06-30 · v2.0*
+*Bichongos · BACKLOG.md · Actualizado: 2026-06-30 · v2.1*

@@ -1,0 +1,43 @@
+// config.h.example — copiar a config.h y editar con credenciales reales
+// NUNCA subir config.h a git (.gitignore ya lo excluye)
+
+#pragma once
+
+// ─── WiFi ──────────────────────────────────────────────────────────────────
+#define WIFI_SSID      "nombre_red_wifi"
+#define WIFI_PASSWORD  "contrasena_wifi"
+
+// IP estática (ver docs/red-wifi-invernadero.md — rango .20–.29 para ESP32)
+#define STATIC_IP   { 192, 168, 10, 20 }
+#define GATEWAY_IP  { 192, 168, 10,  1 }
+#define SUBNET_MASK { 255, 255, 255,  0 }
+#define DNS_SERVER  { 192, 168, 10,  1 }
+
+// ─── MQTT ──────────────────────────────────────────────────────────────────
+#define MQTT_SERVER  "192.168.10.10"   // IP del Raspberry Pi
+#define MQTT_PORT    1883
+#define MQTT_USER    "capsula-01"      // usuario configurado en Mosquitto
+#define MQTT_PASS    "password_mqtt"   // contraseña del usuario MQTT
+
+// ─── Identidad de la cápsula ───────────────────────────────────────────────
+#define CAPSULE_ID   "capsula-01"               // único por nodo
+#define PROFILE_PATH "/profiles/N1-orellana.json" // ruta en SPIFFS
+
+// ─── NTP (zona horaria Colombia = UTC-5, sin cambio de hora) ───────────────
+#define NTP_SERVER          "pool.ntp.org"
+#define GMT_OFFSET_SEC      (-5 * 3600)
+#define DAYLIGHT_OFFSET_SEC 0
+
+// ─── GPIO ──────────────────────────────────────────────────────────────────
+#define PIN_SDA          21
+#define PIN_SCL          22
+#define PIN_MHZ19_RX     16   // ESP32 RX ← MH-Z19B TX
+#define PIN_MHZ19_TX     17   // ESP32 TX → MH-Z19B RX
+#define PIN_DS18B20       4   // 1-Wire (requiere pull-up 4.7kΩ a 3.3V)
+#define PIN_RELAY_HUMIDIF  26  // CH1 → Humidificador 12V
+#define PIN_RELAY_EXTRACTOR 27 // CH2 → Extractor FAE 12V
+#define PIN_RELAY_HEATER   14  // CH3 → Calefactor 110V AC
+#define PIN_RELAY_LED      12  // CH4 → Tira LED 12V
+
+// ─── OTA ───────────────────────────────────────────────────────────────────
+#define OTA_PASSWORD  "ota_password_seguro"

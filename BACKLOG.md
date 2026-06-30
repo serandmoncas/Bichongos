@@ -12,7 +12,7 @@
 | Épica | Total tareas | Completadas | En progreso | Pendientes |
 |-------|-------------|------------|-------------|-----------|
 | E1 — Infraestructura Física | 16 | 0 | 0 | 16 |
-| E2 — IoT / Firmware | 20 | 0 | 0 | 20 |
+| E2 — IoT / Firmware | 20 | 14 | 0 | 6 |
 | E3 — Gateway & Dashboard Local | 10 | 0 | 0 | 10 |
 | E4 — Nube & Alertas | 6 | 0 | 0 | 6 |
 | E5 — Web App | 14 | 0 | 0 | 14 |
@@ -25,7 +25,7 @@
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
-| **Total** | **149** | **27** | **0** | **122** |
+| **Total** | **149** | **41** | **0** | **108** |
 
 ---
 
@@ -61,25 +61,25 @@
 | ID | Tarea | Prioridad | Fase | Estado |
 |----|-------|-----------|------|--------|
 | IOT-01 | Configurar IDE Arduino + librerías (PubSubClient, ArduinoJson, Wire) | 🔴 | 1 | 🔲 |
-| IOT-02 | Firmware: lectura de sensor SHT31 (temp + humedad) | 🔴 | 1 | 🔲 |
-| IOT-03 | Firmware: control de relés (humidificador, extractor, calefactor, LED) | 🔴 | 1 | 🔲 |
-| IOT-04 | Firmware: lógica de control por umbrales (ON/OFF simple) | 🔴 | 1 | 🔲 |
-| IOT-05 | Firmware: carga de perfil JSON desde SPIFFS | 🔴 | 1 | 🔲 |
-| IOT-06 | Firmware: publicación de datos vía MQTT | 🔴 | 1 | 🔲 |
-| IOT-07 | Firmware: lectura de sensor MH-Z19B (CO₂) | 🔴 | 1 | 🔲 |
-| IOT-08 | Firmware: lectura de sensor BH1750 (luz) | 🟡 | 1 | 🔲 |
-| IOT-09 | Firmware: lectura de sensor DS18B20 (temp sustrato) | 🟡 | 1 | 🔲 |
-| IOT-10 | Firmware: modo seguro (continúa operando si pierde WiFi) | 🔴 | 1 | 🔲 |
-| IOT-11 | Firmware: alertas MQTT si sensor fuera de rango crítico | 🔴 | 1 | 🔲 |
-| IOT-12 | Firmware: protección de relés (tiempo mínimo entre encendidos) | 🔴 | 1 | 🔲 |
-| IOT-13 | Firmware: timer de iluminación (ciclo luz/oscuridad por perfil) | 🟡 | 1 | 🔲 |
+| IOT-02 | Firmware: lectura de sensor SHT31 (temp + humedad) | 🔴 | 1 | ✅ |
+| IOT-03 | Firmware: control de relés (humidificador, extractor, calefactor, LED) | 🔴 | 1 | ✅ |
+| IOT-04 | Firmware: lógica de control por umbrales (ON/OFF simple) | 🔴 | 1 | ✅ |
+| IOT-05 | Firmware: carga de perfil JSON desde SPIFFS | 🔴 | 1 | ✅ |
+| IOT-06 | Firmware: publicación de datos vía MQTT | 🔴 | 1 | ✅ |
+| IOT-07 | Firmware: lectura de sensor MH-Z19B (CO₂) | 🔴 | 1 | ✅ |
+| IOT-08 | Firmware: lectura de sensor BH1750 (luz) | 🟡 | 1 | ✅ |
+| IOT-09 | Firmware: lectura de sensor DS18B20 (temp sustrato) | 🟡 | 1 | ✅ |
+| IOT-10 | Firmware: modo seguro (continúa operando si pierde WiFi) | 🔴 | 1 | ✅ |
+| IOT-11 | Firmware: alertas MQTT si sensor fuera de rango crítico | 🔴 | 1 | ✅ |
+| IOT-12 | Firmware: protección de relés (tiempo mínimo entre encendidos) | 🔴 | 1 | ✅ |
+| IOT-13 | Firmware: timer de iluminación (ciclo luz/oscuridad por perfil) | 🟡 | 1 | ✅ |
 | IOT-14 | Firmware: contador de días por etapa y notificación de fin de etapa | 🟡 | 2 | 🔲 |
-| IOT-15 | Firmware: OTA updates (actualización remota del firmware) | 🟢 | 2 | 🔲 |
-| IOT-16 | Firmware: soporte de múltiples perfiles (cambio de etapa automático) | 🟢 | 2 | 🔲 |
-| IOT-17 | Crear `config.h.example` con template de credenciales WiFi/MQTT | 🔴 | 1 | 🔲 |
+| IOT-15 | Firmware: OTA updates (actualización remota del firmware) | 🟢 | 2 | ✅ |
+| IOT-16 | Firmware: soporte de múltiples perfiles (cambio de etapa remoto vía MQTT) | 🟢 | 2 | ✅ |
+| IOT-17 | Crear `config.h.example` con template de credenciales WiFi/MQTT | 🔴 | 1 | ✅ |
 | IOT-18 | Probar firmware en cápsula Mini con orellana (primer ciclo real) | 🔴 | 1 | 🔲 |
 | IOT-19 | Definir y documentar protocolo de calibración de sensores (SHT31, MH-Z19B) | 🔴 | 1 | 🔲 |
-| IOT-20 | Escribir spec del modo seguro: comportamiento del ESP32 sin WiFi y sin MQTT | 🔴 | 1 | 🔲 |
+| IOT-20 | Escribir spec del modo seguro: comportamiento del ESP32 sin WiFi y sin MQTT | 🔴 | 1 | ✅ |
 
 ---
 

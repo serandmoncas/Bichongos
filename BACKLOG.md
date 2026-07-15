@@ -19,13 +19,14 @@
 | E6 — App Móvil | 6 | 0 | 0 | 6 |
 | E7 — Módulo Financiero | 8 | 0 | 0 | 8 |
 | E8 — Multi-sede | 6 | 0 | 0 | 6 |
-| E9 — Producción / Cultivo | 20 | 0 | 0 | 20 |
-| E10 — Documentación | 22 | 19 | 0 | 3 |
+| E9 — Producción / Cultivo | 21 | 0 | 0 | 21 |
+| E10 — Documentación | 24 | 19 | 0 | 5 |
 | E11 — Validación Comercial | 6 | 0 | 0 | 6 |
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
-| **Total** | **149** | **59** | **0** | **90** |
+| E15 — Consultoría Clientes | 18 | 3 | 0 | 15 |
+| **Total** | **170** | **62** | **0** | **108** |
 
 ---
 
@@ -213,6 +214,7 @@
 | CUL-18 | Establecer banco de cepas (agar inclinado + frío) | 🟡 | 2 | 🔲 |
 | CUL-19 | Primera clonación de tejido frutal en agar | 🟡 | 2 | 🔲 |
 | CUL-20 | Primer aislamiento monoespórico | 🟢 | 4 | 🔲 |
+| CUL-21 | Crear perfil JSON y doc técnico para Eryngii (King Oyster / Ostra Rey) — pedido por cliente 1-jul | 🔴 | 1 | 🔲 |
 
 ---
 
@@ -244,6 +246,8 @@
 | DOC-20 | Playbook nueva sede (guía de replicación) | 🟢 | 4 | 🔲 |
 | DOC-21 | Documento de KPIs y criterios de éxito del sistema (tasa contaminación, BE%, SLA) | 🔴 | 0 | ✅ |
 | DOC-22 | Registro de línea de base ambiental del invernadero (7 días de medición real) | 🔴 | 0 | ✅ |
+| DOC-23 | Propuesta de consultoría para clientes externos (docs/negocio/propuesta-consultoria.md) | 🔴 | 0 | ✅ |
+| DOC-24 | Diseño de espacio para primer cliente — La Jobiteka (docs/negocio/diseno-espacio-jobiteka.md) | 🔴 | 1 | ✅ |
 
 ---
 
@@ -322,8 +326,33 @@
 
 7. **Sistema de log de oleadas** — el sistema actual no rastrea el número de oleadas por bloque. Agregar `oleada` al modelo de datos del lote.
 8. **Comparación de cepas** — dos perfiles de la misma especie con parámetros distintos en cápsulas distintas. El historial de Grafana permitirá comparar rendimiento.
-9. **Alertas de fin de etapa** — el firmware debería notificar automáticamente cuando los `duracion_dias` del perfil se cumplen, indicando que hay que cambiar de etapa o cosechar.
-10. **Integración con báscula digital** — registro automático de peso de cosecha via Bluetooth/USB al sistema de trazabilidad.
+
+---
+
+## ÉPICA 15 — Consultoría Clientes
+
+> Servicio de consultoría para terceros que quieren montar laboratorios de hongos. Primer cliente: La Jobiteka (Diego, Guarne).
+
+| ID | Tarea | Prioridad | Fase | Estado |
+|----|-------|-----------|------|--------|
+| CON-01 | Propuesta de consultoría formal (4 componentes, honorarios, forma de pago) | 🔴 | 0 | ✅ |
+| CON-02 | Diseño de espacio provisional — La Jobiteka 7×14 m | 🔴 | 0 | ✅ |
+| CON-03 | Agenda y talking points para reunión con cliente | 🔴 | 0 | ✅ |
+| CON-04 | Cerrar acuerdo con La Jobiteka (definir Modelo A o B, escenario, fecha de inicio) | 🔴 | 1 | 🔲 |
+| CON-05 | Realizar visita de diagnóstico presencial (Componente 1) | 🔴 | 1 | 🔲 |
+| CON-06 | Entregar diseño técnico final del espacio (plano + cronograma) | 🔴 | 1 | 🔲 |
+| CON-07 | Acompañamiento de adecuación — La Jobiteka (Componente 2) | 🟡 | 1 | 🔲 |
+| CON-08 | Capacitación con primer lote + entrega de manuales (Componentes 3 y 4) | 🟡 | 1 | 🔲 |
+| CON-09 | Acta reunión 1-jul-2026 enviada a Daniela (docs/reuniones/2026-07-01-reunion-cliente.md) | 🔴 | 1 | 🔲 |
+| CON-10 | Visita física al invernadero + revisión de espacio (acordada al final de reunión 1-jul) | 🔴 | 1 | 🔲 |
+| CON-11 | Agendar cata en Mamá Santa con Edward (chef) — ramen, orellana tempura, portobello | 🔴 | 1 | 🔲 |
+| CON-12 | Propuesta económica detallada Fase 1 (definir tras visita al invernadero) | 🔴 | 1 | 🔲 |
+| CON-13 | Contactar Plural (Iván Montoya) — restaurante universitario, potencial cliente institucional | 🟡 | 1 | 🔲 |
+| CON-14 | Contactar Lolita de AFID | 🟡 | 1 | 🔲 |
+| CON-15 | Contactar restaurante vía Forme (a través del contacto que tiene Juan) | 🟡 | 1 | 🔲 |
+| CON-16 | Documentar concepto cápsula-pecera para restaurante (cápsula visible en sala del restaurante) | 🟡 | 2 | 🔲 |
+| CON-17 | Documentar mini cápsula de escritorio como producto retail | 🟡 | 2 | 🔲 |
+| CON-18 | Diseñar formato de taller de siembra como evento pago (~$200.000/persona) | 🟢 | 2 | 🔲 |
 
 ---
 

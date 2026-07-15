@@ -4,6 +4,8 @@
 
 **Sede piloto:** Guarne, Antioquia, Colombia · Escala: Microempresa · Replicable en nuevas sedes
 
+📋 **[Ver BACKLOG completo →](BACKLOG.md)** · 170 tareas · 62 completadas (36%)
+
 ---
 
 ## Tabla de Contenidos

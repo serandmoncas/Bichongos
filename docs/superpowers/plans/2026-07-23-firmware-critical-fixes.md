@@ -23,7 +23,7 @@ Spec de referencia: `docs/superpowers/specs/2026-07-23-firmware-critical-fixes-d
 
 ---
 
-### Tarea 1: Entorno de build PlatformIO + fix de compilación pre-existente
+### Task 1: Entorno de build PlatformIO + fix de compilación pre-existente
 
 **Files:**
 - Create: `firmware/capsula_core/platformio.ini`
@@ -115,7 +115,7 @@ verificación."
 
 ---
 
-### Tarea 2: Fix — `parseStage()` carga valores genéricos en silencio si la etapa no existe
+### Task 2: Fix — `parseStage()` carga valores genéricos en silencio si la etapa no existe
 
 **Files:**
 - Modify: `firmware/capsula_core/profile.cpp:5`
@@ -164,7 +164,7 @@ porque parseStage() siempre devolvía true)."
 
 ---
 
-### Tarea 3: Fix — posible lectura fuera de límites al copiar el payload MQTT
+### Task 3: Fix — posible lectura fuera de límites al copiar el payload MQTT
 
 **Files:**
 - Modify: `firmware/capsula_core/mqtt_client.cpp:18-20`
@@ -217,7 +217,7 @@ garantiza null-termination. memcpy + terminador explícito lo evita."
 
 ---
 
-### Tarea 4: Agregar watchdog de hardware
+### Task 4: Agregar watchdog de hardware
 
 **Files:**
 - Modify: `firmware/capsula_core/capsula_core.ino`
@@ -322,7 +322,7 @@ forzar el reinicio."
 
 ---
 
-### Tarea 5: Agregar alerta de CO2 mínimo crítico (Enoki)
+### Task 5: Agregar alerta de CO2 mínimo crítico (Enoki)
 
 **Files:**
 - Modify: `firmware/capsula_core/profile.h`
@@ -413,7 +413,7 @@ generaba ninguna alerta."
 
 ---
 
-### Tarea 6: `profile/set` cambia de especie de verdad (no solo de etapa)
+### Task 6: `profile/set` cambia de especie de verdad (no solo de etapa)
 
 **Files:**
 - Modify: `firmware/capsula_core/profile.h`
@@ -660,7 +660,7 @@ quedaron sin uso y se eliminaron."
 
 ---
 
-### Tarea 7: Arbitraje en pulsos cuando coinciden frío crítico y CO2 crítico (Enoki)
+### Task 7: Arbitraje en pulsos cuando coinciden frío crítico y CO2 crítico (Enoki)
 
 **Files:**
 - Modify: `firmware/capsula_core/capsula_core.ino`

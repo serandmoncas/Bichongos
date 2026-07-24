@@ -1,6 +1,6 @@
 # Agenda — Reunión con La Jobiteka
 
-**Fecha:** Julio 2026 (próxima cita con Diego y equipo)
+**Fecha:** Julio 2026 (próxima cita con Juan y equipo)
 **Objetivo:** presentar la propuesta y cerrar el acuerdo
 **Duración estimada:** 90–120 minutos
 
@@ -9,7 +9,7 @@
 ## Antes de la reunión
 
 - [ ] Tener `docs/negocio/propuesta-consultoria.md` impresa o en pantalla
-- [ ] Tener plano del espacio (`docs/diseno-espacio-jobiteka.md`) disponible para mostrar
+- [ ] Tener plano del espacio (`docs/negocio/diseno-espacio-jobiteka.md`) disponible para mostrar
 - [ ] Confirmar el correo correcto en el deck: sergio@jobiteka.com
 - [ ] Saber qué escenario vamos a presentar primero (recomendación: escenario mínimo como punto de partida, escalar si ellos quieren)
 - [ ] Definir internamente antes: ¿tenemos preferencia por Modelo A o B?

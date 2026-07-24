@@ -1,6 +1,6 @@
 # Propuesta de Consultoría — Laboratorio de Hongos
 
-**Para:** Diego y equipo (La Jobiteka)
+**Para:** Juan y equipo (La Jobiteka)
 **De:** Bichongos — Sergio Monsalve
 **Fecha:** Julio 2026
 **Versión:** 1.1 (ajustada post-reunión 30 jun)

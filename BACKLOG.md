@@ -342,7 +342,7 @@
 
 ## ÉPICA 15 — Consultoría Clientes
 
-> Servicio de consultoría para terceros que quieren montar laboratorios de hongos. Primer cliente: La Jobiteka (Diego, Guarne).
+> Servicio de consultoría para terceros que quieren montar laboratorios de hongos. Primer cliente: La Jobiteka (Juan, Guarne).
 
 | ID | Tarea | Prioridad | Fase | Estado |
 |----|-------|-----------|------|--------|

@@ -13,6 +13,7 @@
 #include <WiFi.h>
 #include <ArduinoOTA.h>
 #include <time.h>
+#include <esp_task_wdt.h>
 #include "config.h"
 #include "sensors.h"
 #include "actuators.h"
@@ -25,6 +26,7 @@ static const unsigned long SENSOR_INTERVAL_MS  = 30000UL; // ciclo normal
 static const unsigned long OFFLINE_BUFFER_MAX  = 240;     // lecturas en RAM sin WiFi (2 h)
 static const unsigned long WIFI_RETRY_INTERVAL = 30000UL;
 static const unsigned long MQTT_RETRY_INTERVAL = 10000UL;
+static const uint32_t      WDT_TIMEOUT_S       = 60;   // ciclo normal es 30s; da margen de 1 ciclo perdido
 
 // ─── Estado global ─────────────────────────────────────────────────────────
 static WiFiClient  wifiClient;
@@ -160,6 +162,9 @@ void setup() {
   delay(500);
   Serial.printf("\n[MAIN] Bichongos Capsula Core — %s\n", CAPSULE_ID);
 
+  esp_task_wdt_init(WDT_TIMEOUT_S, true); // reinicia el ESP32 si loop() se cuelga
+  esp_task_wdt_add(NULL);
+
   initActuators();
   initSensors();
   stageTrackerInit();
@@ -194,6 +199,8 @@ void setup() {
 
 // ─── Loop ──────────────────────────────────────────────────────────────────
 void loop() {
+  esp_task_wdt_reset();
+
   // OTA tiene prioridad total cuando está pendiente
   if (otaPending) {
     ArduinoOTA.handle();

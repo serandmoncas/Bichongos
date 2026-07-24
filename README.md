@@ -156,7 +156,7 @@ De la especie más accesible a la más compleja. La secuencia define también el
 
 #### 🧊 Enoki (Flammulina velutipes)
 - **Complejidad añadida:** requiere enfriamiento activo (7–12 °C). Alto CO₂ intencional para tallos largos.
-- **Cápsula:** primer uso de sistema de frío activo. Parámetros invertidos vs. resto de especies.
+- **Cápsula:** Tipo 1 Mini (nevera modificada, reutiliza su compresor) — primer uso de sistema de frío activo. Parámetros invertidos vs. resto de especies.
 - **📄 [Ver especificaciones técnicas completas →](docs/especies/N3-enoki.md)**
 
 #### 🌿 Maitake (Grifola frondosa)
@@ -385,9 +385,9 @@ bichongos/
 | Selladora al vacío | — | 80–200 |
 | Humidificadores ultrasónicos | 5 L | 40–80 c/u |
 | Extractores FAE | 4"–6" | 30–60 c/u |
-| Mini split 9.000 BTU | Para cápsulas de Enoki / Reishi | 500–800 |
 | Estanterías metálicas | 5 niveles 90×40×180 cm | 80–150 c/u |
 | Nevera de conservación | 200–300 L | 300–500 |
+| Nevera usada para cápsula Tipo 1 (I+D y Enoki) | 150–200 L | 150–300 |
 
 ### 7.2 Consumibles e insumos
 

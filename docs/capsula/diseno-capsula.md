@@ -16,7 +16,8 @@ El objetivo es que **el clima exterior sea irrelevante** — una cápsula en Bar
 
 ### Tipo 1 — Mini (nevera modificada)
 
-**Uso:** I+D, prueba de cepas nuevas, experimentos de parámetros.
+**Uso:** I+D, prueba de cepas nuevas, experimentos de parámetros — **y la cápsula de Enoki** (ver
+nota abajo).
 
 | Especificación | Valor |
 |---------------|-------|
@@ -28,6 +29,12 @@ El objetivo es que **el clima exterior sea irrelevante** — una cápsula en Bar
 | Ventilación | Tubo de 40 mm con extractor PC 12V y filtro HEPA |
 | Humidificación | Humidificador ultrasónico 1 L por tubo de entrada |
 | Costo estimado | $150–300 USD (nevera usada + electrónica) |
+
+> **Enoki usa este mismo tipo de cápsula (F1-11):** el compresor real de la nevera ya está
+> dimensionado para el volumen de una nevera doméstica y da suficiente delta-T (ambiente de Guarne
+> 14–17 °C → objetivo 7–12 °C de Enoki) sin sobredimensionar. Es más barato y probado que un
+> mini-split (pensado para enfriar un cuarto, no una nevera) o que un módulo Peltier sin
+> dimensionar (insuficiente para el volumen y aislamiento de una cápsula Tipo 2 completa).
 
 **Ventaja:** construcción mínima. Ideal para comenzar.
 
@@ -51,12 +58,18 @@ El objetivo es que **el clima exterior sea irrelevante** — una cápsula en Bar
 | Sistema | Componente | Especificación |
 |---------|-----------|---------------|
 | Calefacción | Resistencia cerámica PTC | 200–500 W (según especie) |
-| Refrigeración | Módulo Peltier TEC1-12706 + disipador | Para Enoki y cepas frías |
+| Refrigeración | Módulo Peltier TEC1-12706 + disipador | Solo para sedes con clima cálido constante (ver nota) |
 | Humidificación | Humidificador ultrasónico 5 L | Controlado por ESP32 via relé |
 | FAE (intercambio de aire) | Extractor PC 120 mm + filtro MERV-11 | Controlado por ESP32 via relé |
 | Iluminación | Tira LED 6500K (luz blanca fría) | 12–24 V, intensidad regulable |
 
-> **Nota sobre refrigeración:** para la mayoría de las especies (orellana, shiitake, melena, reishi), no se necesita refrigeración activa. El módulo Peltier es necesario solo para Enoki o en sedes con clima cálido (>25 °C constante).
+> **Nota sobre refrigeración:** para la mayoría de las especies (orellana, shiitake, melena,
+> reishi), no se necesita refrigeración activa. **Enoki no usa este módulo Peltier** — se cultiva
+> en una cápsula Tipo 1 Mini (ver arriba), que ya trae su propio compresor dimensionado para el
+> volumen. El Peltier de esta sección queda como opción de contingencia solo para sedes con clima
+> cálido constante (>25 °C) donde incluso especies "sin refrigeración" en Guarne necesiten ayuda
+> para no pasarse de su `temp_max` — no está dimensionado ni validado todavía, requeriría calcular
+> cuántos módulos hacen falta según el área/aislamiento real de la caja antes de construirlo.
 
 #### Costo estimado (sin electrónica IoT)
 

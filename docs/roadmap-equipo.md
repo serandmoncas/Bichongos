@@ -135,7 +135,7 @@ El equipo necesita dominar tres áreas en paralelo:
 
 ### IoT — Climatización activa
 
-- [ ] Integrar mini split inverter al sistema de control (relé + sensor de temperatura en la cápsula)
+- [ ] Integrar compresor de nevera reutilizada al sistema de control (relé + sensor de temperatura en la cápsula) — Enoki usa cápsula Tipo 1 Mini, no mini-split
 - [ ] Control PID básico en Node-RED: evitar ciclos rápidos de encendido/apagado
 - [ ] Cápsula de frío para Enoki: aislamiento térmico adicional, gestión del condensado
 - [ ] Cápsula de calor para Reishi: calefactor + control de temperatura ±1 °C

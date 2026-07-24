@@ -49,10 +49,17 @@
 
 ## Diseño especial de la cápsula para Enoki
 
-La cápsula de Enoki necesita modificaciones respecto a la cápsula estándar:
+Enoki **no usa la cápsula Tipo 2 Estándar** de madera — se construye sobre una **cápsula Tipo 1
+Mini (nevera doméstica modificada, 150–200 L)**, igual que las cápsulas de I+D (ver
+`docs/capsula/diseno-capsula.md`). El compresor real de la nevera ya está dimensionado para ese
+volumen y cubre el delta-T necesario (ambiente de Guarne 14–17 °C → objetivo 7–12 °C) sin
+sobredimensionar como haría un mini-split, ni quedar corto como un módulo Peltier sin calcular.
 
-1. **Aislamiento térmico adicional:** paneles de espuma de poliestireno de 5 cm en paredes y techo.
-2. **Sistema de frío:** mini split de 9.000 BTU o unidad de refrigeración adaptada. El ESP32 controla el compresor vía relé (con protección de tiempo mínimo entre encendidos para proteger el compresor).
+1. **Aislamiento térmico:** ya incorporado en la nevera; si se necesita margen extra en sedes más
+   cálidas, agregar espuma de poliestireno en la puerta/junta, no reemplazar el sistema de frío.
+2. **Sistema de frío:** compresor original de la nevera, controlado por el ESP32 vía relé (con
+   protección de tiempo mínimo entre encendidos para proteger el compresor — igual que el resto
+   de cápsulas Tipo 1).
 3. **Ventilación reducida:** el extractor FAE solo opera en pulsos cortos para mantener CO₂ > 2.000 ppm. Si el CO₂ sube mucho (> 5.000 ppm), el extractor corre 30 segundos.
 4. **Oscurecimiento:** cubrir el interior con material opaco. Los 4 h de luz son tenue (< 100 lux) para guiar el crecimiento vertical.
 

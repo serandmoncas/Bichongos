@@ -51,7 +51,7 @@
 | F1-08 | Instalar extractor + filtro HEPA en zona B | 🟡 | 1 | 🔲 |
 | F1-09 | Instalar deshidratador en zona C | 🟡 | 1 | 🔲 |
 | F1-10 | Construir cápsula Estándar para Shiitake | 🟡 | 2 | 🔲 |
-| F1-11 | Construir cápsula con sistema de frío para Enoki | 🟢 | 3 | 🔲 |
+| F1-11 | Construir cápsula Enoki (Tipo 1 Mini — nevera modificada, reutiliza el compresor) | 🟢 | 3 | 🔲 |
 | F1-12 | Construir cápsula con calefacción para Reishi / Cordyceps | 🟢 | 3 | 🔲 |
 | F1-13 | Levantar BOM real con precios en COP (cotizar Medellín + AliExpress) | 🔴 | 0 | ✅ |
 | F1-14 | Crear diagrama eléctrico de la primera cápsula (Fritzing o KiCad) | 🔴 | 1 | ✅ |

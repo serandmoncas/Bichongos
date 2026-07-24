@@ -13,7 +13,7 @@
 |-------|-------------|------------|-------------|-----------|
 | E1 — Infraestructura Física | 16 | 3 | 0 | 13 |
 | E2 — IoT / Firmware | 20 | 18 | 0 | 2 |
-| E3 — Gateway & Dashboard Local | 10 | 10 | 0 | 0 |
+| E3 — Gateway & Dashboard Local | 11 | 10 | 0 | 1 |
 | E4 — Nube & Alertas | 6 | 0 | 0 | 6 |
 | E5 — Web App | 14 | 0 | 0 | 14 |
 | E6 — App Móvil | 6 | 0 | 0 | 6 |
@@ -26,7 +26,7 @@
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
 | E15 — Consultoría Clientes | 18 | 3 | 0 | 15 |
-| **Total** | **175** | **70** | **0** | **105** |
+| **Total** | **176** | **70** | **0** | **106** |
 
 > Conteo recalculado programáticamente contando los checkmarks reales de cada tabla, no a mano —
 > la tabla anterior tenía errores aritméticos genuinos (no solo desactualización): E1 decía 0
@@ -93,6 +93,10 @@
 
 > Instalación y configuración del gateway central.
 
+> **Nota (2026-07-23):** GW-01 a GW-10 están ✅ porque el software/scripts están escritos y
+> revisados (`gateway/scripts/`, `gateway/mosquitto/`), no porque ya corran en un Raspberry Pi
+> físico real — el hardware existe pero no se ha puesto en funcionamiento todavía (ver GW-11).
+
 | ID | Tarea | Prioridad | Fase | Estado |
 |----|-------|-----------|------|--------|
 | GW-01 | Instalar Raspberry Pi OS + configuración inicial | 🔴 | 1 | ✅ |
@@ -105,6 +109,7 @@
 | GW-08 | Configurar backup automático a Firebase | 🟡 | 1 | ✅ |
 | GW-09 | Configurar UPS y script de shutdown seguro | 🟡 | 1 | ✅ |
 | GW-10 | Documentar flujos Node-RED y exportar `node-red-flows.json` | 🟡 | 1 | ✅ |
+| GW-11 | Desplegar el gateway en el Raspberry Pi físico real (correr `gateway/scripts/setup.sh`, configurar Mosquitto/Node-RED/InfluxDB/Grafana en vivo) | 🔴 | 1 | 🔲 |
 
 ---
 
@@ -199,7 +204,7 @@
 
 | ID | Tarea | Prioridad | Fase | Estado |
 |----|-------|-----------|------|--------|
-| CUL-01 | Adquirir cepa de Orellana (P. ostreatus) certificada | 🔴 | 1 | 🔲 |
+| CUL-01 | Adquirir cepa de Orellana (P. ostreatus) certificada — **en camino, entrega estimada semana del 2026-07-27** | 🔴 | 1 | 🔲 |
 | CUL-02 | Primer lote de orellana: pasteurización + inoculación (registro completo) | 🔴 | 1 | 🔲 |
 | CUL-03 | Primera cosecha orellana + cálculo de BE% | 🔴 | 1 | 🔲 |
 | CUL-04 | Primer cliente: restaurante o plaza de mercado | 🔴 | 1 | 🔲 |

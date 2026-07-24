@@ -101,9 +101,9 @@ registrado en `.claude/settings.json`:
 3. Si matchea: leer el archivo del disco (ya editado), `json.load()`. Si falla el parseo, error y
    salir 2.
 4. Validar **top-level obligatorio** (presente en los 10 perfiles reales hoy):
-   `id` (str), `especie` (str), `nombre_comun` (str), `categoria` (str), `nivel_dificultad` (str),
-   `etapa_actual` (str), `etapas` (dict no vacío), `alertas` (dict), `notas` (str),
-   `version_perfil` (presente, cualquier tipo simple).
+   `id` (str), `especie` (str), `nombre_comun` (str), `categoria` (str), `nivel_dificultad` (int
+   — verificado contra los perfiles reales: 1-4, no texto), `etapa_actual` (str), `etapas` (dict
+   no vacío), `alertas` (dict), `notas` (str), `version_perfil` (presente, cualquier tipo simple).
 5. **Top-level opcional** (solo psilocybe hoy, pero válido para cualquier especie restringida):
    `zona_restringida` (bool), `marco_legal` (str), `requiere_autorizacion` (bool).
 6. Para cada etapa dentro de `etapas`, **obligatorio**: `temp_min`/`temp_max`/`humedad_min`/

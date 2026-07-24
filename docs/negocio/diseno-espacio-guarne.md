@@ -1,11 +1,13 @@
-# Diseño de Espacio — La Jobiteka
+# Diseño de Espacio — Sede Guarne (Bichongos)
 
 **Espacio disponible:** Invernadero 7×14 m = 98 m²
 **Área útil interna (zona cerrada):** 6×12 m = 72 m² (recomendado)
 **Ubicación:** Guarne, Antioquia
 **Versión:** 0.1 (borrador pre-diagnóstico)
 
-> *Este diseño es provisional. El diseño final se entrega como parte del Componente 1 de la propuesta.*
+> *Este diseño es provisional. El diseño final se entrega como parte del Componente 1 de la propuesta de consultoría con La Jobiteka.*
+>
+> *Nota (2026-07-24): este invernadero es la sede física de Bichongos (Épica 1 de `BACKLOG.md`), no un sitio aparte de un cliente. Juan (La Jobiteka), socio de Songo Sorhongo, está ejecutando la obra civil como parte del acuerdo de consultoría — ver `docs/negocio/propuesta-consultoria.md` y `docs/reuniones/`. El archivo se renombró de `diseno-espacio-jobiteka.md` para reflejar esto.*
 
 ---
 

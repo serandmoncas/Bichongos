@@ -150,11 +150,11 @@ Use `*.example` template files for each. These are listed in `.gitignore`.
 
 ## Development Status
 
-See `BACKLOG.md` for the full product backlog. Current phase: **firmware (`firmware/capsula_core/`) y gateway (`gateway/`) implementados y compilando** (IOT-02 a IOT-07 y GW-01 a GW-06 completos). **Infraestructura física aún no construida** — Fase 1 (hardware) sigue pendiente.
+See `BACKLOG.md` for the full product backlog. Current phase: **firmware (`firmware/capsula_core/`) y gateway (`gateway/`) implementados y compilando** (IOT-02 a IOT-07 y GW-01 a GW-06 completos). **Infraestructura física en obra activa** desde julio 2026 — la sede de Guarne (invernadero 7×14 m) se está construyendo en el marco de la consultoría con La Jobiteka (Juan, socio de Songo Sorhongo), que está ejecutando la obra civil (ver Épica 1 y Épica 15 en `BACKLOG.md`, y `docs/reuniones/`). Meta: dos habitaciones terminadas para la semana del 3 de agosto de 2026.
 
 **Immediate blockers:**
-1. No physical capsule built yet (épica E1 — infraestructura física, 0/16 tareas)
-2. No certified mushroom strain acquired yet (`CUL-01` pending)
+1. Infraestructura física en construcción pero no terminada (épica E1, 0/19 tareas completas — obra civil en curso, meta parcial 3-ago-2026 para 2 habitaciones)
+2. No certified mushroom strain acquired yet (`CUL-01` pending) — semilla en pedido con dos proveedores, ~20 días de entrega
 3. Firmware nunca se ha probado en un ESP32 real — está compilado y revisado (`pio run -e esp32dev`), pero no validado en hardware físico
 
 **Next priorities** (from BACKLOG.md):

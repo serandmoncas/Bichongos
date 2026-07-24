@@ -37,7 +37,7 @@
 
 ## ÉPICA 1 — Infraestructura Física
 
-> Construcción y adecuación del invernadero piloto en Guarne.
+> Construcción y adecuación del invernadero piloto en Guarne. La obra civil (F1-17/18/19) la está ejecutando Juan (La Jobiteka, socio de Songo Sorhongo) como parte del acuerdo de consultoría — ver Épica 15.
 
 | ID | Tarea | Prioridad | Fase | Estado |
 |----|-------|-----------|------|--------|
@@ -57,6 +57,9 @@
 | F1-14 | Crear diagrama eléctrico de la primera cápsula (Fritzing o KiCad) | 🔴 | 1 | ✅ |
 | F1-15 | Diseñar plan de red WiFi del invernadero (cobertura, IPs estáticas por nodo) | 🟡 | 1 | ✅ |
 | F1-16 | Medir línea de base ambiental real del invernadero (temp/HR/CO₂ durante 7 días) | 🔴 | 0 | 🔲 |
+| F1-17 | Obra civil: levantar muros, revocar, cielo falso y tubería eléctrica/agua por piso (primeras 2 habitaciones) — meta semana del 3-ago-2026 | 🔴 | 1 | 🔲 |
+| F1-18 | Construir fogón a leña + atril de hierro para canecas de 200 L (uso dual: doméstico y pasteurización por vapor) | 🔴 | 1 | 🔲 |
+| F1-19 | Fabricar parrilla de vapor (40 cm, elevada) para pasteurización de tubulares dentro de las canecas | 🟡 | 1 | 🔲 |
 
 ---
 
@@ -259,7 +262,7 @@
 | DOC-21 | Documento de KPIs y criterios de éxito del sistema (tasa contaminación, BE%, SLA) | 🔴 | 0 | ✅ |
 | DOC-22 | Registro de línea de base ambiental del invernadero (7 días de medición real) | 🔴 | 0 | ✅ |
 | DOC-23 | Propuesta de consultoría para clientes externos (docs/negocio/propuesta-consultoria.md) | 🔴 | 0 | ✅ |
-| DOC-24 | Diseño de espacio para primer cliente — La Jobiteka (docs/negocio/diseno-espacio-jobiteka.md) | 🔴 | 1 | ✅ |
+| DOC-24 | Diseño de espacio sede Guarne — consultoría La Jobiteka (docs/negocio/diseno-espacio-guarne.md) | 🔴 | 1 | ✅ |
 | DOC-25 | docs/especies/N4-psilocybe.md | 🔴 | 0 | ✅ |
 | DOC-26 | docs/especies/N4-chaga.md (documentada, sin perfil JSON — ver CUL-22) | 🟡 | 0 | ✅ |
 | DOC-27 | docs/especies/N4-trufas.md (documentada, sin perfil JSON — ver CUL-23) | 🟢 | 0 | ✅ |
@@ -349,7 +352,7 @@
 
 ## ÉPICA 15 — Consultoría Clientes
 
-> Servicio de consultoría para terceros que quieren montar laboratorios de hongos. Primer cliente: La Jobiteka (Juan, Guarne).
+> Servicio de consultoría para terceros que quieren montar laboratorios de hongos. Primer cliente: La Jobiteka (Juan), socio de Songo Sorhongo. La obra física que Juan está construyendo es la propia sede de Bichongos en Guarne (uso compartido) — ver Épica 1 para el seguimiento de esa construcción.
 
 | ID | Tarea | Prioridad | Fase | Estado |
 |----|-------|-----------|------|--------|
@@ -371,6 +374,13 @@
 | CON-16 | Documentar concepto cápsula-pecera para restaurante (cápsula visible en sala del restaurante) | 🟡 | 2 | 🔲 |
 | CON-17 | Documentar mini cápsula de escritorio como producto retail | 🟡 | 2 | 🔲 |
 | CON-18 | Diseñar formato de taller de siembra como evento pago (~$200.000/persona) | 🟢 | 2 | 🔲 |
+| CON-19 | Compartir contacto de proveedor de barriles de 200 L (centro de Medellín) | 🔴 | 1 | 🔲 |
+| CON-20 | Calcular estimado real de capacidad de producción por especie (llamadas a productores aliados) — insumo para reunión de Juan con distribuidor de Medellín | 🔴 | 1 | 🔲 |
+| CON-21 | Documentar y desarrollar modelo de acopio de pequeños productores (línea de negocio inspirada en Casa Orellana / Federación de Fungicultores) | 🔴 | 1 | 🔲 |
+| CON-22 | Retomar compra de electrónica pausada (~$1M COP) cuando infraestructura esté más avanzada | 🟡 | 1 | 🔲 |
+| CON-23 | Reunión de seguimiento miércoles 29-jul-2026 con avances de compras del checklist | 🔴 | 1 | 🔲 |
+
+> Nota: la construcción física de la sede de Guarne (muros, fogón, pasteurizador por vapor) es la misma obra de la Épica 1 — Infraestructura Física, no un sitio aparte de La Jobiteka. Ver F1-17/F1-18/F1-19 ahí. Esta épica rastrea la relación comercial de consultoría (honorarios, capacidad, comercialización), no la obra en sí.
 
 ---
 

@@ -10,7 +10,7 @@
 
 ## Contexto
 
-Primera reunión presencial con el cliente interesado en montar un laboratorio de hongos en su finca. El espacio disponible es un invernadero de 7×14 m. El cliente tiene experiencia como marquetero, consume hongos funcionales desde hace años y tiene una red de contactos en restaurantes y gastronomía en Antioquia. Su pareja (Daniela) es parte activa del proyecto.
+Primera reunión presencial con el cliente interesado en montar un laboratorio de hongos en su finca. El espacio disponible es un invernadero de 7×14 m — es la sede física de Bichongos en Guarne (Épica 1 de `BACKLOG.md`), no un sitio aparte del cliente; Juan la está construyendo como parte del acuerdo de consultoría, en el marco de Songo Sorhongo (ver nota de corrección 2026-07-24 en `docs/reuniones/2026-07-24-reunion-cliente.md`). El cliente tiene experiencia como marquetero, consume hongos funcionales desde hace años y tiene una red de contactos en restaurantes y gastronomía en Antioquia. Su pareja (Daniela) es parte activa del proyecto.
 
 ---
 

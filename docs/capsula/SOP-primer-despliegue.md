@@ -7,6 +7,15 @@
 **Tarea relacionada:** F1-05, GW-11, IOT-18 en `BACKLOG.md`
 **Documentos de referencia:** `docs/bom-precios-cop.md` · `docs/capsula/diagrama-electrico-capsula-mini.md` · `gateway/README.md` · `firmware/capsula_core/README.md`
 
+> **Sobre las imágenes de este documento:** son diagramas generados con IA (`referencias-visuales/`)
+> como ayuda visual rápida. Son fieles a las especificaciones técnicas en la mayoría de los
+> detalles, pero el texto dentro de una imagen generada por IA puede tener errores de
+> transcripción (ej. una etiqueta duplicada o mal ubicada). **Ante cualquier duda entre lo que
+> muestra una imagen y lo que dice el texto de este documento o de
+> `diagrama-electrico-capsula-mini.md`, el texto manda.**
+
+![Vista completa de la cápsula Mini y la caja de control externa](referencias-visuales/diagrama-capsula-completa.png)
+
 ---
 
 ## Por qué este orden
@@ -30,6 +39,8 @@ sus puertos y un mensaje de prueba MQTT se ve reflejado en Grafana.
 - [ ] Verificar Node-RED en `http://<ip-rpi>:1880`
 - [ ] Verificar Grafana en `http://<ip-rpi>:3000` (dashboard inicial cargado)
 - [ ] Configurar backup automático (`gateway/scripts/backup.sh`) y shutdown seguro de UPS (`gateway/scripts/ups-shutdown.sh`)
+
+![Arquitectura del gateway: Mosquitto, Node-RED, InfluxDB, Grafana y su flujo de datos](referencias-visuales/diagrama-gateway.png)
 
 **Al terminar:** marcar GW-11 como ✅ en `BACKLOG.md` — recién ahí el gateway está realmente
 desplegado, no solo revisado como código.
@@ -62,6 +73,13 @@ desplegado, no solo revisado como código.
 - [ ] `VCC → 3.3V` (señal de control del ESP32)
 - [ ] Confirmar lógica invertida: `IN = LOW` enciende el actuador, `IN = HIGH` lo apaga
 
+![Cableado del módulo de relés: puente JD-VCC/VCC a remover, y separación AC/DC](referencias-visuales/diagrama-cableado-reles.png)
+
+> Nota sobre esta imagen: el bloque de texto junto al ESP32 tiene una línea redundante/confusa
+> ("VCC → IN1" seguido de "GPIO26 → IN1") — es un artefacto de generación, ignórala. La conexión
+> real es una sola: cada GPIO (26/27/14/12) a su IN correspondiente, y `VCC` del módulo (aparte,
+> no a un IN) a 3.3V — como dice el texto de esta sección arriba.
+
 ### B.4 Conectar sensores (ver `docs/capsula/diagrama-electrico-capsula-mini.md` secciones 3–4 para el detalle completo)
 
 | Sensor | Pines | Nota crítica |
@@ -69,6 +87,8 @@ desplegado, no solo revisado como código.
 | SHT31 + BH1750 (bus compartido) | SDA→GPIO21, SCL→GPIO22 | VCC → **3.3V**, no 5V |
 | MH-Z19B | TX→GPIO16, RX→GPIO17 | VCC → **5V externo**, no el 3.3V del ESP32 |
 | DS18B20 | DATA→GPIO4 | Resistencia 4.7 kΩ entre DATA y 3.3V — **obligatoria** |
+
+![Ubicación física de cada sensor dentro de la nevera](referencias-visuales/diagrama-sensores.png)
 
 ### B.5 Conectar relés → actuadores
 
@@ -137,4 +157,4 @@ que es un problema de hardware.
 
 ---
 
-*Bichongos · docs/capsula/SOP-primer-despliegue.md · v1.0 · 2026-07-23*
+*Bichongos · docs/capsula/SOP-primer-despliegue.md · v1.1 · 2026-07-23*

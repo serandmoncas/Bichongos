@@ -17,7 +17,9 @@ static char topicOta[64];
 
 static void onMessage(char* topic, byte* payload, unsigned int len) {
   char msg[256] = {};
-  strlcpy(msg, (char*)payload, min((unsigned int)sizeof(msg) - 1, len) + 1);
+  unsigned int copyLen = min((unsigned int)sizeof(msg) - 1, len);
+  memcpy(msg, payload, copyLen);
+  msg[copyLen] = '\0';
 
   Serial.printf("[MQTT] RX [%s] %s\n", topic, msg);
 

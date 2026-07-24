@@ -33,7 +33,9 @@ Bichongos/
 │   │   ├── N3-maitake.md
 │   │   ├── N3-cola-de-pavo.md
 │   │   ├── N4-cordyceps.md
-│   │   └── N4-psilocybe.md
+│   │   ├── N4-psilocybe.md
+│   │   ├── N4-chaga.md           # sin perfil JSON todavía (ver BACKLOG.md)
+│   │   └── N4-trufas.md          # sin perfil JSON todavía (ver BACKLOG.md)
 │   ├── protocolos/               # SOPs (Standard Operating Procedures)
 │   │   ├── SOP-pasteurizacion.md
 │   │   ├── SOP-esterilizacion.md
@@ -42,9 +44,15 @@ Bichongos/
 │   │   └── SOP-postcosecha.md
 │   └── roadmap-equipo.md         # 5-stage skill ladder for the team
 ├── firmware/
-│   ├── capsula_core/             # ESP32 Arduino firmware (not yet implemented)
+│   ├── capsula_core/             # ESP32 Arduino firmware — implementado y compila (PlatformIO)
+│   │   ├── capsula_core.ino      # Sketch principal
+│   │   ├── platformio.ini        # Entorno de build (esp32dev)
+│   │   ├── profile.h / .cpp      # Carga y parseo de perfil JSON
+│   │   ├── mqtt_client.h / .cpp  # Publicación/suscripción MQTT
+│   │   ├── sensors.h / .cpp, actuators.h / .cpp, stage_tracker.h / .cpp
+│   │   ├── data/profiles/        # Copia de los perfiles JSON para subir a SPIFFS
 │   │   └── README.md             # Setup, GPIO pinout, MQTT topics
-│   └── profiles/                 # JSON strain profiles (10 species)
+│   └── profiles/                 # JSON strain profiles (10 species — chaga/trufas aún sin perfil)
 │       ├── N1-orellana.json
 │       ├── N2-shiitake.json
 │       ├── N2-portobello.json
@@ -55,9 +63,19 @@ Bichongos/
 │       ├── N3-cola-de-pavo.json
 │       ├── N4-cordyceps.json
 │       └── N4-psilocybe.json
-├── gateway/                      # Raspberry Pi 4 configuration (not yet implemented)
+├── gateway/                      # Raspberry Pi 4 configuration — implementado
+│   ├── scripts/                  # setup.sh, setup-cloud.sh, add-capsule.sh, backup.sh, ups-shutdown.sh
+│   ├── mosquitto/, node-red-flows.json, grafana dashboards
 │   └── README.md                 # Mosquitto + Node-RED + InfluxDB + Grafana setup
-└── webapp/                       # Future Next.js web app (planned Phase 2)
+├── webapp/                       # Future Next.js web app (planned Phase 2)
+├── docs/superpowers/             # Specs y planes de diseño (proceso spec-driven)
+│   ├── specs/                    # Un archivo por decisión de diseño significativa
+│   └── plans/                    # Planes de implementación derivados de las specs
+└── .claude/                      # Automatizaciones de Claude Code para este repo
+    ├── settings.json             # Hooks: anti-credenciales (commit), validador de esquema JSON
+    ├── hooks/                    # Scripts de los hooks anteriores
+    ├── agents/                   # firmware-iot-reviewer (revisión de firmware bajo demanda)
+    └── skills/nueva-especie/     # Genera doc + JSON + fila de BACKLOG para una especie nueva
 ```
 
 ---
@@ -66,6 +84,7 @@ Bichongos/
 
 ### IoT Layer (per capsule)
 - **MCU:** ESP32 (Arduino framework)
+- **Build:** PlatformIO (`firmware/capsula_core/platformio.ini`, entorno `esp32dev`, `platform = espressif32@7.0.1` fijado)
 - **Sensors:** SHT31 (temp+humidity, I2C), MH-Z19B (CO₂, UART), BH1750 (light, I2C), DS18B20 (substrate temp, 1-Wire)
 - **Actuators:** 4-channel relay (humidifier, FAE extractor, heater, LED)
 - **Protocol:** MQTT via PubSubClient library
@@ -131,14 +150,14 @@ Use `*.example` template files for each. These are listed in `.gitignore`.
 
 ## Development Status
 
-See `BACKLOG.md` for the full product backlog. Current phase: **Fase 0 completed** (documentation base). Starting Fase 1 (hardware build + firmware).
+See `BACKLOG.md` for the full product backlog. Current phase: **firmware (`firmware/capsula_core/`) y gateway (`gateway/`) implementados y compilando** (IOT-02 a IOT-07 y GW-01 a GW-06 completos). **Infraestructura física aún no construida** — Fase 1 (hardware) sigue pendiente.
 
 **Immediate blockers:**
-1. Firmware `capsula_core/` is not yet implemented (no `.ino` files)
-2. Gateway Raspberry Pi not yet configured
-3. No physical capsule built yet
+1. No physical capsule built yet (épica E1 — infraestructura física, 0/16 tareas)
+2. No certified mushroom strain acquired yet (`CUL-01` pending)
+3. Firmware nunca se ha probado en un ESP32 real — está compilado y revisado (`pio run -e esp32dev`), pero no validado en hardware físico
 
-**Next Sprint 1 priorities** (from BACKLOG.md):
-- `IOT-01` through `IOT-07`: firmware skeleton with sensor reading and MQTT publishing
-- `GW-01` through `GW-06`: Raspberry Pi + Mosquitto + InfluxDB + Grafana setup
+**Next priorities** (from BACKLOG.md):
+- `F1-01`/`F1-05`: sellar pisos del invernadero, construir la primera cápsula Mini
 - `CUL-01`: acquire certified Orellana strain
+- Desplegar el firmware a un ESP32 real una vez exista la primera cápsula, y validar sensores/actuadores contra `docs/capsula/diagrama-electrico-capsula-mini.md`

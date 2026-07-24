@@ -57,6 +57,7 @@ bool loadProfile(const char* path, Profile& out) {
   out.alertas.tempCriticaMin   = doc["alertas"]["temp_critica_min"]    | 8.0f;
   out.alertas.humedadCriticaMin = doc["alertas"]["humedad_critica_min"] | 60.0f;
   out.alertas.co2CriticoMax    = doc["alertas"]["co2_critico_max"]     | 5000;
+  out.alertas.co2CriticoMin    = doc["alertas"]["co2_critico_min"]     | 0;
 
   JsonObject stageObj = doc["etapas"][out.etapaActual];
   if (!parseStage(stageObj, out.etapa)) {

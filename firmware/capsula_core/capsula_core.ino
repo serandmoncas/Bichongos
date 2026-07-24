@@ -119,6 +119,8 @@ void checkAlerts(const SensorData& s, const Profile& p) {
   }
   if (!s.errorMHZ19 && s.co2Ppm > a.co2CriticoMax)
     mqttPublishAlert("co2_critico_max", s.co2Ppm, a.co2CriticoMax, "extractor_on");
+  if (!s.errorMHZ19 && a.co2CriticoMin > 0 && s.co2Ppm < a.co2CriticoMin)
+    mqttPublishAlert("co2_critico_min", s.co2Ppm, a.co2CriticoMin, "revisar_sellado_camara");
 
   // Alertas de sensor caído
   if (s.errorSHT31)   mqttPublishAlert("sensor_error", 0, 0, "sht31_sin_respuesta");

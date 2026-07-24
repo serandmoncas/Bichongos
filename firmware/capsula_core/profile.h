@@ -22,6 +22,7 @@ struct AlertThresholds {
   float tempCriticaMin;
   float humedadCriticaMin;
   int   co2CriticoMax;
+  int   co2CriticoMin;  // solo Enoki; 0 = no aplica
 };
 
 struct Profile {

@@ -3,6 +3,8 @@
 #include <SPIFFS.h>
 
 static bool parseStage(JsonObject stage, StageParams& out) {
+  if (stage.isNull()) return false;
+
   out.tempMin     = stage["temp_min"]    | 15.0f;
   out.tempMax     = stage["temp_max"]    | 25.0f;
   out.humedadMin  = stage["humedad_min"] | 70.0f;

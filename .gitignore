@@ -16,6 +16,7 @@ firmware/**/*.bin
 firmware/**/*.elf
 firmware/**/*.map
 firmware/build/
+firmware/capsula_core/.pio/
 
 # Node / webapp
 webapp/node_modules/

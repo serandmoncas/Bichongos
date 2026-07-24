@@ -1,0 +1,41 @@
+{
+  "id": "N4-cordyceps",
+  "especie": "Cordyceps militaris",
+  "nombre_comun": "Cordyceps",
+  "nivel_dificultad": 4,
+  "categoria": "funcional_medicinal",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 22,
+      "temp_max": 26,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 18,
+      "oscuridad_total": true
+    },
+    "fructificacion": {
+      "temp_min": 22,
+      "temp_max": 24,
+      "humedad_min": 80,
+      "humedad_max": 90,
+      "co2_max": 1500,
+      "luz_horas": 12,
+      "luz_tipo": "blanca_fria_6500K",
+      "luz_inicio": "08:00",
+      "luz_fin": "20:00",
+      "ciclo_luz_estricto": true,
+      "duracion_dias": 55
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 27,
+    "temp_critica_min": 20,
+    "humedad_critica_min": 75,
+    "co2_critico_max": 2500
+  },
+  "notas": "CRÍTICO: oscuridad TOTAL durante incubación (señal de cambio de estación). Ciclo de luz 12/12 estricto en fructificación - usar temporizador con batería de respaldo. Inocular SOLO con cultivo líquido (LC), no semilla de grano."
+}

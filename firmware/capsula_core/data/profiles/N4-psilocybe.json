@@ -1,0 +1,43 @@
+{
+  "id": "N4-psilocybe",
+  "especie": "Psilocybe cubensis",
+  "nombre_comun": "Psilocybe",
+  "nivel_dificultad": 4,
+  "categoria": "medicinal",
+  "version_perfil": "1.0.0",
+  "zona_restringida": true,
+  "requiere_autorizacion": true,
+  "marco_legal": "Colombia - Ley 30/1986, uso personal no penalizado. Producción comercial regulada.",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 25,
+      "temp_max": 28,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 18,
+      "calefaccion_activa": true
+    },
+    "fructificacion": {
+      "temp_min": 22,
+      "temp_max": 26,
+      "humedad_min": 90,
+      "humedad_max": 95,
+      "co2_max": 1500,
+      "luz_horas": 12,
+      "luz_inicio": "07:00",
+      "luz_fin": "19:00",
+      "duracion_dias": 12,
+      "calefaccion_activa": true
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 30,
+    "temp_critica_min": 20,
+    "humedad_critica_min": 85,
+    "co2_critico_max": 2500
+  },
+  "notas": "ZONA RESTRINGIDA - requiere autorización y registro. Calefacción activa en Guarne (especie tropical). Ver docs/especies/N4-psilocybe.md para protocolo legal y de bioseguridad."
+}

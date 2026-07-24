@@ -1,0 +1,45 @@
+{
+  "id": "N3-enoki",
+  "especie": "Flammulina velutipes",
+  "nombre_comun": "Enoki",
+  "nivel_dificultad": 3,
+  "categoria": "gourmet",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 22,
+      "temp_max": 25,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 25,
+      "choque_frio": false
+    },
+    "fructificacion": {
+      "temp_min": 7,
+      "temp_max": 12,
+      "humedad_min": 85,
+      "humedad_max": 90,
+      "co2_min": 2000,
+      "co2_max": 4000,
+      "luz_max_lux": 100,
+      "luz_horas": 4,
+      "luz_inicio": "08:00",
+      "luz_fin": "12:00",
+      "duracion_dias": 18,
+      "choque_frio": true,
+      "refrigeracion_activa": true,
+      "fae_modo": "minimo"
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 15,
+    "temp_critica_min": 5,
+    "humedad_critica_min": 80,
+    "co2_critico_min": 1500,
+    "co2_critico_max": 5000
+  },
+  "notas": "LÓGICA INVERTIDA: única especie que necesita frío activo (7-12°C) y CO2 alto (>2000ppm) para producir tallos largos. Luz mínima (<100 lux). FAE opera solo en pulsos para mantener CO2 elevado."
+}

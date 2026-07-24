@@ -1,0 +1,38 @@
+{
+  "id": "N3-cola-de-pavo",
+  "especie": "Trametes versicolor",
+  "nombre_comun": "Cola de Pavo",
+  "nivel_dificultad": 3,
+  "categoria": "funcional",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 22,
+      "temp_max": 28,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 40
+    },
+    "fructificacion": {
+      "temp_min": 18,
+      "temp_max": 24,
+      "humedad_min": 80,
+      "humedad_max": 85,
+      "co2_max": 1000,
+      "luz_horas": 12,
+      "luz_inicio": "07:00",
+      "luz_fin": "19:00",
+      "duracion_dias": 45
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 30,
+    "temp_critica_min": 15,
+    "humedad_critica_min": 75,
+    "co2_critico_max": 2000
+  },
+  "notas": "Producción orientada a extractos, no consumo fresco. Fructificación lenta (45 días). Esperar maduración completa del esporocarpo antes de cosechar."
+}

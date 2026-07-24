@@ -14,6 +14,7 @@
 #include <ArduinoOTA.h>
 #include <time.h>
 #include <esp_task_wdt.h>
+#include <ctype.h>
 #include "config.h"
 #include "sensors.h"
 #include "actuators.h"
@@ -40,16 +41,38 @@ static unsigned long offlineSince  = 0;
 static bool          wasOffline    = false;
 
 // ─── Callbacks para comandos MQTT entrantes ────────────────────────────────
-void onProfileSet(const char* newProfile, const char* newStage) {
-  Serial.printf("[MAIN] Cambio de etapa solicitado → perfil:%s etapa:%s\n",
-                newProfile, newStage);
-  if (reloadProfileStage(newStage, activeProfile)) {
-    stageTrackerSetStage(newStage);  // reiniciar contador de días
-    Serial.printf("[MAIN] Etapa actualizada a '%s'\n", newStage);
-    mqttPublishStatus(getCurrentActuatorState(), activeProfile);
-  } else {
-    Serial.printf("[MAIN] Error: etapa '%s' no encontrada en perfil\n", newStage);
+static bool profileIdIsSafe(const char* id) {
+  if (!id || strlen(id) == 0) return false;
+  for (const char* c = id; *c; c++) {
+    if (!isalnum((unsigned char)*c) && *c != '_' && *c != '-') return false;
   }
+  return true;
+}
+
+void onProfileSet(const char* newProfile, const char* newStage) {
+  Serial.printf("[MAIN] Cambio de perfil solicitado → perfil:%s etapa:%s\n",
+                newProfile, newStage);
+
+  if (!profileIdIsSafe(newProfile)) {
+    Serial.printf("[MAIN] Rechazado: id de perfil '%s' contiene caracteres invalidos\n", newProfile);
+    mqttPublishAlert("profile_set_rechazado", 0, 0, "id_invalido");
+    return;
+  }
+
+  char path[64];
+  snprintf(path, sizeof(path), "/profiles/%s.json", newProfile);
+
+  Profile candidate;
+  if (!loadProfile(path, newStage, candidate)) {
+    Serial.printf("[MAIN] Error: no se pudo cargar perfil '%s' en '%s'\n", newProfile, path);
+    mqttPublishAlert("profile_set_rechazado", 0, 0, "perfil_no_encontrado");
+    return;
+  }
+
+  activeProfile = candidate;
+  stageTrackerSetStage(activeProfile.etapaActual);  // reiniciar contador de días
+  Serial.printf("[MAIN] Perfil activo: '%s' etapa '%s'\n", activeProfile.especie, activeProfile.etapaActual);
+  mqttPublishStatus(getCurrentActuatorState(), activeProfile);
 }
 
 void onOtaTrigger() {
@@ -171,7 +194,7 @@ void setup() {
   initSensors();
   stageTrackerInit();
 
-  if (!loadProfile(PROFILE_PATH, activeProfile)) {
+  if (!loadProfile(PROFILE_PATH, nullptr, activeProfile)) {
     Serial.println("[MAIN] CRITICO: sin perfil. Entrando en modo seguro mínimo.");
     // Con perfil fallido: sensores siguen funcionando pero sin control activo
   }

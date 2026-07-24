@@ -54,7 +54,8 @@ firmware/capsula_core/
 ├── profile.h / .cpp      # Carga y parseo de perfil JSON
 ├── mqtt_client.h / .cpp  # Publicación/suscripción MQTT
 └── data/                 # Perfiles JSON (se sube a SPIFFS)
-    └── profile.json      # Perfil activo (copia del elegido)
+    └── profiles/         # Los 10 perfiles de especie (copia de firmware/profiles/)
+        └── N1-orellana.json, N3-enoki.json, ...
 ```
 
 ---

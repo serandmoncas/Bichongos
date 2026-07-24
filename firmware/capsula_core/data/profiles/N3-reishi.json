@@ -1,0 +1,52 @@
+{
+  "id": "N3-reishi",
+  "especie": "Ganoderma lucidum",
+  "nombre_comun": "Reishi",
+  "nivel_dificultad": 3,
+  "categoria": "funcional",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 25,
+      "temp_max": 28,
+      "humedad_min": 70,
+      "humedad_max": 80,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 40,
+      "calefaccion_activa": true
+    },
+    "antler": {
+      "temp_min": 25,
+      "temp_max": 28,
+      "humedad_min": 95,
+      "humedad_max": 100,
+      "co2_min": 3000,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 18,
+      "fae_modo": "minimo",
+      "calefaccion_activa": true
+    },
+    "fructificacion_cap": {
+      "temp_min": 25,
+      "temp_max": 30,
+      "humedad_min": 85,
+      "humedad_max": 95,
+      "co2_max": 700,
+      "luz_horas": 12,
+      "luz_inicio": "07:00",
+      "luz_fin": "19:00",
+      "duracion_dias": 45,
+      "calefaccion_activa": true
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 32,
+    "temp_critica_min": 22,
+    "humedad_critica_min": 80,
+    "co2_critico_max": 1000
+  },
+  "notas": "Especie tropical - calefacción activa durante TODAS las etapas en Guarne (14-17°C exterior). 3 etapas distintas: incubación → antler (CO2 alto) → cap (CO2 bajo + luz). Producto final: seco para extractos."
+}

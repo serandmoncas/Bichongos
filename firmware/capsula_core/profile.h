@@ -34,7 +34,5 @@ struct Profile {
   bool          loaded;
 };
 
-bool    loadProfile(const char* path, Profile& out);
-bool    setStage(Profile& p, const char* stage, JsonDocument& doc);
-bool    reloadProfileStage(const char* stage, Profile& out);
+bool    loadProfile(const char* path, const char* stageOverride, Profile& out);
 void    printProfile(const Profile& p);

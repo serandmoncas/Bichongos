@@ -1,0 +1,54 @@
+{
+  "id": "N2-eryngii",
+  "especie": "Pleurotus eryngii",
+  "nombre_comun": "Eryngii (King Oyster / Ostra Rey)",
+  "nivel_dificultad": 2,
+  "categoria": "gourmet",
+  "version_perfil": "1.0.0",
+  "etapa_actual": "incubacion",
+  "etapas": {
+    "incubacion": {
+      "temp_min": 22,
+      "temp_max": 26,
+      "humedad_min": 85,
+      "humedad_max": 95,
+      "co2_max": 9999,
+      "luz_horas": 0,
+      "duracion_dias": 25,
+      "choque_frio": false
+    },
+    "induccion": {
+      "temp_min": 10,
+      "temp_max": 15,
+      "humedad_min": 90,
+      "humedad_max": 95,
+      "co2_max": 800,
+      "luz_horas": 10,
+      "luz_inicio": "07:00",
+      "luz_fin": "17:00",
+      "duracion_dias": 2,
+      "choque_frio": true,
+      "temp_choque": 12,
+      "duracion_choque_horas": 24
+    },
+    "fructificacion": {
+      "temp_min": 10,
+      "temp_max": 16,
+      "humedad_min": 85,
+      "humedad_max": 90,
+      "co2_max": 900,
+      "luz_horas": 10,
+      "luz_inicio": "07:00",
+      "luz_fin": "17:00",
+      "duracion_dias": 12,
+      "choque_frio": false
+    }
+  },
+  "alertas": {
+    "temp_critica_max": 20,
+    "temp_critica_min": 5,
+    "humedad_critica_min": 75,
+    "co2_critico_max": 2000
+  },
+  "notas": "Fructifica en frío (10-16°C), a diferencia del resto de especies gourmet del proyecto (que fructifican 15-22°C). Muy sensible al CO2 en fructificación — el exceso produce tallos largos y delgados con sombreros pequeños (mala relación comercial), sensibilidad similar a melena de león pero menos extrema. Requiere choque de frío prolongado (24h a 10-13°C) para inducir primordios gruesos de calidad comercial — un choque corto tipo shiitake (12h) no alcanza. Colonización más lenta que orellana regular. Pedido por cliente La Jobiteka el 2026-07-01 (ver CUL-21 en BACKLOG.md)."
+}

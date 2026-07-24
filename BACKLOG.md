@@ -19,14 +19,14 @@
 | E6 — App Móvil | 6 | 0 | 0 | 6 |
 | E7 — Módulo Financiero | 8 | 0 | 0 | 8 |
 | E8 — Multi-sede | 6 | 0 | 0 | 6 |
-| E9 — Producción / Cultivo | 23 | 0 | 0 | 23 |
-| E10 — Documentación | 28 | 27 | 0 | 1 |
+| E9 — Producción / Cultivo | 23 | 1 | 0 | 22 |
+| E10 — Documentación | 29 | 28 | 0 | 1 |
 | E11 — Validación Comercial | 6 | 0 | 0 | 6 |
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
 | E15 — Consultoría Clientes | 18 | 3 | 0 | 15 |
-| **Total** | **177** | **71** | **0** | **106** |
+| **Total** | **178** | **73** | **0** | **105** |
 
 > Conteo recalculado programáticamente contando los checkmarks reales de cada tabla, no a mano —
 > la tabla anterior tenía errores aritméticos genuinos (no solo desactualización): E1 decía 0
@@ -224,7 +224,7 @@
 | CUL-18 | Establecer banco de cepas (agar inclinado + frío) | 🟡 | 2 | 🔲 |
 | CUL-19 | Primera clonación de tejido frutal en agar | 🟡 | 2 | 🔲 |
 | CUL-20 | Primer aislamiento monoespórico | 🟢 | 4 | 🔲 |
-| CUL-21 | Crear perfil JSON y doc técnico para Eryngii (King Oyster / Ostra Rey) — pedido por cliente 1-jul | 🔴 | 1 | 🔲 |
+| CUL-21 | Crear perfil JSON y doc técnico para Eryngii (King Oyster / Ostra Rey) — pedido por cliente 1-jul | 🔴 | 1 | ✅ |
 | CUL-22 | Crear perfil JSON para Chaga (doc técnico ya existe: docs/especies/N4-chaga.md) | 🟡 | 2 | 🔲 |
 | CUL-23 | Crear perfil JSON para Trufas (doc técnico ya existe: docs/especies/N4-trufas.md) | 🟢 | 3 | 🔲 |
 
@@ -264,6 +264,7 @@
 | DOC-26 | docs/especies/N4-chaga.md (documentada, sin perfil JSON — ver CUL-22) | 🟡 | 0 | ✅ |
 | DOC-27 | docs/especies/N4-trufas.md (documentada, sin perfil JSON — ver CUL-23) | 🟢 | 0 | ✅ |
 | DOC-28 | docs/capsula/SOP-primer-despliegue.md — guía secuencial gateway + cápsula + firmware + primera prueba | 🔴 | 1 | ✅ |
+| DOC-29 | docs/especies/N2-eryngii.md | 🔴 | 1 | ✅ |
 
 ---
 

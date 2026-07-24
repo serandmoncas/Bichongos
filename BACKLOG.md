@@ -2,8 +2,8 @@
 
 > Registro de todas las funcionalidades, tareas y mejoras del proyecto. Organizado por épica y fase. Prioridad: 🔴 Alta · 🟡 Media · 🟢 Baja
 
-**Última actualización:** 2026-06-30
-**Estado del proyecto:** Fase 0 completada (documentación base). Pre-implementación en curso.
+**Última actualización:** 2026-07-23
+**Estado del proyecto:** Firmware (`firmware/capsula_core/`) y gateway (`gateway/`) implementados y compilando (ver `CLAUDE.md`). Infraestructura física (Fase 1) sigue pendiente — no hay cápsula construida todavía.
 
 ---
 
@@ -11,22 +11,27 @@
 
 | Épica | Total tareas | Completadas | En progreso | Pendientes |
 |-------|-------------|------------|-------------|-----------|
-| E1 — Infraestructura Física | 16 | 0 | 0 | 16 |
-| E2 — IoT / Firmware | 20 | 17 | 0 | 3 |
+| E1 — Infraestructura Física | 16 | 3 | 0 | 13 |
+| E2 — IoT / Firmware | 20 | 18 | 0 | 2 |
 | E3 — Gateway & Dashboard Local | 10 | 10 | 0 | 0 |
 | E4 — Nube & Alertas | 6 | 0 | 0 | 6 |
 | E5 — Web App | 14 | 0 | 0 | 14 |
 | E6 — App Móvil | 6 | 0 | 0 | 6 |
 | E7 — Módulo Financiero | 8 | 0 | 0 | 8 |
 | E8 — Multi-sede | 6 | 0 | 0 | 6 |
-| E9 — Producción / Cultivo | 21 | 0 | 0 | 21 |
-| E10 — Documentación | 24 | 19 | 0 | 5 |
+| E9 — Producción / Cultivo | 23 | 0 | 0 | 23 |
+| E10 — Documentación | 27 | 26 | 0 | 1 |
 | E11 — Validación Comercial | 6 | 0 | 0 | 6 |
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
 | E15 — Consultoría Clientes | 18 | 3 | 0 | 15 |
-| **Total** | **170** | **62** | **0** | **108** |
+| **Total** | **175** | **70** | **0** | **105** |
+
+> Conteo recalculado programáticamente contando los checkmarks reales de cada tabla, no a mano —
+> la tabla anterior tenía errores aritméticos genuinos (no solo desactualización): E1 decía 0
+> completadas cuando F1-13/14/15 ya estaban ✅, E10 no incluía las 3 fichas de especie documentadas
+> sin fila de backlog (ver DOC-25 a DOC-27).
 
 ---
 
@@ -215,6 +220,8 @@
 | CUL-19 | Primera clonación de tejido frutal en agar | 🟡 | 2 | 🔲 |
 | CUL-20 | Primer aislamiento monoespórico | 🟢 | 4 | 🔲 |
 | CUL-21 | Crear perfil JSON y doc técnico para Eryngii (King Oyster / Ostra Rey) — pedido por cliente 1-jul | 🔴 | 1 | 🔲 |
+| CUL-22 | Crear perfil JSON para Chaga (doc técnico ya existe: docs/especies/N4-chaga.md) | 🟡 | 2 | 🔲 |
+| CUL-23 | Crear perfil JSON para Trufas (doc técnico ya existe: docs/especies/N4-trufas.md) | 🟢 | 3 | 🔲 |
 
 ---
 
@@ -248,6 +255,9 @@
 | DOC-22 | Registro de línea de base ambiental del invernadero (7 días de medición real) | 🔴 | 0 | ✅ |
 | DOC-23 | Propuesta de consultoría para clientes externos (docs/negocio/propuesta-consultoria.md) | 🔴 | 0 | ✅ |
 | DOC-24 | Diseño de espacio para primer cliente — La Jobiteka (docs/negocio/diseno-espacio-jobiteka.md) | 🔴 | 1 | ✅ |
+| DOC-25 | docs/especies/N4-psilocybe.md | 🔴 | 0 | ✅ |
+| DOC-26 | docs/especies/N4-chaga.md (documentada, sin perfil JSON — ver CUL-22) | 🟡 | 0 | ✅ |
+| DOC-27 | docs/especies/N4-trufas.md (documentada, sin perfil JSON — ver CUL-23) | 🟢 | 0 | ✅ |
 
 ---
 
@@ -312,20 +322,21 @@
 
 ### 🔴 Críticas (bloquean avance)
 
-1. **Firmware no existe** — los perfiles JSON están creados pero el código Arduino que los lee no existe. Es el primer bloqueador real.
-2. **Gateway no configurado** — sin el RPi configurado no hay dashboard, no hay histórico, no hay alertas.
-3. **Primera cápsula no construida** — todo el sistema es teórico hasta que haya hardware físico funcionando.
+1. **Primera cápsula no construida** — todo el sistema de control es teórico hasta que haya
+   hardware físico funcionando (F1-05). Firmware y gateway (software) ya están implementados y
+   compilando, pero nunca se han probado en un ESP32 real.
+2. **Cepa de Orellana no adquirida** (CUL-01) — sin cepa certificada no puede arrancar el primer
+   lote real, aunque el resto del sistema esté listo.
 
 ### 🟡 Importantes (próximas iteraciones)
 
-4. **Banco de cepas no establecido** — depender de cepas externas crea riesgo de cadena de suministro. Hay que preservar cepas propias desde el primer lote exitoso.
-5. **No hay primer cliente definido** — la proyección financiera supone ventas desde el primer ciclo. Hay que validar el canal de venta antes de escalar producción.
-6. **El perfil JSON de Enoki tiene `co2_min`** — el firmware debe soportar tanto límite máximo como mínimo de CO₂ (para Enoki se necesita CO₂ ALTO de forma intencional — lógica invertida).
+3. **Banco de cepas no establecido** — depender de cepas externas crea riesgo de cadena de suministro. Hay que preservar cepas propias desde el primer lote exitoso.
+4. **No hay primer cliente de producto definido** (distinto del cliente de consultoría, ver Épica 15) — la proyección financiera supone ventas desde el primer ciclo. Hay que validar el canal de venta antes de escalar producción.
 
 ### 🟢 Mejoras futuras
 
-7. **Sistema de log de oleadas** — el sistema actual no rastrea el número de oleadas por bloque. Agregar `oleada` al modelo de datos del lote.
-8. **Comparación de cepas** — dos perfiles de la misma especie con parámetros distintos en cápsulas distintas. El historial de Grafana permitirá comparar rendimiento.
+5. **Sistema de log de oleadas** — el sistema actual no rastrea el número de oleadas por bloque. Agregar `oleada` al modelo de datos del lote.
+6. **Comparación de cepas** — dos perfiles de la misma especie con parámetros distintos en cápsulas distintas. El historial de Grafana permitirá comparar rendimiento.
 
 ---
 
@@ -367,9 +378,9 @@
 - [ ] **LEG-01** Verificar requisitos INVIMA para venta de hongos comestibles
 - [ ] **LEG-02** Registrar actividad económica (RUT / Cámara de Comercio)
 - [ ] **LEG-03** Definir KPIs mínimos del sistema (tasa contaminación, BE%, SLA IoT)
-- [ ] **F1-13** Levantar BOM real con precios COP (cotizar sensores, ESP32, relés en Medellín)
 - [ ] **F1-16** Medir línea de base ambiental del invernadero durante 7 días (termómetro + higrómetro manual)
-- [ ] **F1-14** Crear diagrama eléctrico de la primera cápsula
+
+> F1-13 (BOM) y F1-14 (diagrama eléctrico) ya están ✅ completadas — quitadas de esta lista.
 
 ---
 
@@ -379,17 +390,16 @@
 
 - [ ] **F1-01** Sellar pisos del invernadero
 - [ ] **F1-05** Construir cápsula Mini con nevera usada
-- [ ] **F1-15** Diseñar plan de red WiFi (IPs estáticas, cobertura)
-- [ ] **IOT-01** Configurar IDE Arduino + primera prueba de sensor SHT31
-- [ ] **IOT-19** Protocolo de calibración de sensores antes del primer despliegue
-- [ ] **IOT-20** Escribir spec del modo seguro del ESP32
-- [ ] **GW-01** Instalar Raspberry Pi OS
-- [ ] **GW-02** Instalar y configurar Mosquitto
-- [ ] **SEC-01** Configurar autenticación MQTT desde el inicio
-- [ ] **SEC-03** Definir reglas de seguridad Firebase antes de conectar
+- [ ] **IOT-01** Configurar IDE Arduino + primera prueba de sensor SHT31 (nota: el firmware ya
+      compila vía PlatformIO — ver `firmware/capsula_core/platformio.ini` — este paso ahora es
+      solo cargarlo a un ESP32 físico)
 - [ ] **CUL-01** Conseguir cepa de Orellana certificada
 - [ ] **LEG-04** Protocolo de gestión de lotes contaminados
 
+> F1-15, IOT-19, IOT-20, GW-01, GW-02, SEC-01 y SEC-03 ya están ✅ completadas — quitadas de esta
+> lista. El firmware y el gateway (software) están implementados; lo que falta de este sprint es
+> la infraestructura física y desplegar/probar en hardware real.
+
 ---
 
-*Bichongos · BACKLOG.md · Actualizado: 2026-06-30 · v2.1*
+*Bichongos · BACKLOG.md · Actualizado: 2026-07-23 · v2.2*

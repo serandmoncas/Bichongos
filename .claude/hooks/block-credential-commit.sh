@@ -15,7 +15,13 @@ fi
 cd "$CLAUDE_PROJECT_DIR"
 
 forbidden_names='(^|/)config\.h$|(^|/)secrets\.h$|(^|/)\.env$|(^|/)mosquitto_passwd$'
-staged_files=$(git diff --cached --name-only || true)
+
+# Revisa tanto lo staged (--cached) como las modificaciones sin stagear de
+# archivos ya trackeados: "git commit -a"/"git commit <pathspec>" auto-staggean
+# esos cambios justo al momento del commit, despues de que este hook ya corrio
+# contra el index. Sin cubrir tambien el diff sin stagear, un secreto pegado en
+# un archivo trackeado y commiteado con -a pasaria sin ser detectado.
+all_changed_files=$( { git diff --cached --name-only; git diff --name-only; } | sort -u || true)
 
 blocked_reason=""
 
@@ -25,10 +31,10 @@ while IFS= read -r f; do
     blocked_reason="archivo de credenciales '$f' esta en el commit (deberia estar en .gitignore)"
     break
   fi
-done <<< "$staged_files"
+done <<< "$all_changed_files"
 
 if [[ -z "$blocked_reason" ]]; then
-  diff_content=$(git diff --cached -- . ":(exclude)*.example" || true)
+  diff_content=$( { git diff --cached -- . ":(exclude)*.example"; git diff -- . ":(exclude)*.example"; } || true)
 
   if echo "$diff_content" | grep -Eq '^\+.*[0-9]{8,10}:[A-Za-z0-9_-]{35}'; then
     blocked_reason="posible token de Telegram bot detectado en el diff"
@@ -40,7 +46,7 @@ if [[ -z "$blocked_reason" ]]; then
 fi
 
 if [[ -n "$blocked_reason" ]]; then
-  jq -n --arg msg "Commit bloqueado: $blocked_reason. Revisa el diff staged antes de commitear." \
+  jq -n --arg msg "Commit bloqueado: $blocked_reason. Revisa los cambios (staged y sin stagear) antes de commitear." \
     '{hookSpecificOutput: {permissionDecision: "deny"}, systemMessage: $msg}'
 fi
 

@@ -36,7 +36,9 @@ log() {
 
 # Cargar variables de entorno si existe el archivo
 if [ -f "$HOME/bichongos/gateway/.env" ]; then
-    export $(grep -v '^#' "$HOME/bichongos/gateway/.env" | xargs)
+    set -a
+    source "$HOME/bichongos/gateway/.env"
+    set +a
 fi
 
 log "=== UPS: FALLO DE ENERGÍA DETECTADO ==="

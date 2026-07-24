@@ -36,6 +36,10 @@ echo "    Creando usuarios MQTT..."
 echo "    (Se te pedirá contraseña para cada usuario)"
 sudo mosquitto_passwd -c /etc/mosquitto/passwd gateway
 sudo mosquitto_passwd    /etc/mosquitto/passwd capsula-01
+echo ""
+echo "    Usuario 'admin' (acceso de superusuario para diagnóstico — ver mosquitto/acl.example)."
+echo "    Usa una contraseña distinta a la de 'gateway'; guárdala aparte, no en este repo."
+sudo mosquitto_passwd    /etc/mosquitto/passwd admin
 
 sudo systemctl enable mosquitto
 sudo systemctl restart mosquitto
@@ -44,7 +48,14 @@ echo "    Mosquitto → OK (puerto 1883)"
 # ─── 3. Node-RED ────────────────────────────────────────────────────────────
 echo ""
 echo ">>> [3/6] Instalando Node-RED..."
-bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --confirm-install --confirm-pi
+NODE_RED_INSTALLER="/tmp/update-nodejs-and-nodered.sh"
+curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered \
+  -o "$NODE_RED_INSTALLER"
+echo "    Instalador descargado → $NODE_RED_INSTALLER"
+echo "    SHA256: $(sha256sum "$NODE_RED_INSTALLER" | awk '{print $1}')"
+echo "    (guardar este hash la primera vez; si cambia en una reinstalación, revisar el script antes de correrlo)"
+bash "$NODE_RED_INSTALLER" --confirm-install --confirm-pi
+rm -f "$NODE_RED_INSTALLER"
 
 # Instalar nodos adicionales necesarios
 cd ~/.node-red

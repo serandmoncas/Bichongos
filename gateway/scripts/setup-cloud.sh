@@ -17,7 +17,9 @@ if [ ! -f "$ENV_FILE" ]; then
     exit 1
 fi
 
-source <(grep -v '^#' "$ENV_FILE" | grep '=')
+set -a
+source "$ENV_FILE"
+set +a
 
 log "[1/4] Verificando Telegram Bot"
 if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ "$TELEGRAM_BOT_TOKEN" = "123456789:ABCdefGhIJKlmNoPQRstuVWXyz" ]; then

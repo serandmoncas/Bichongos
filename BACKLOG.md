@@ -20,13 +20,13 @@
 | E7 — Módulo Financiero | 8 | 0 | 0 | 8 |
 | E8 — Multi-sede | 6 | 0 | 0 | 6 |
 | E9 — Producción / Cultivo | 23 | 0 | 0 | 23 |
-| E10 — Documentación | 27 | 26 | 0 | 1 |
+| E10 — Documentación | 28 | 27 | 0 | 1 |
 | E11 — Validación Comercial | 6 | 0 | 0 | 6 |
 | E12 — Marco Legal & Calidad | 5 | 0 | 0 | 5 |
 | E13 — Seguridad IoT | 6 | 6 | 0 | 0 |
 | E14 — Plan de Negocio | 4 | 4 | 0 | 0 |
 | E15 — Consultoría Clientes | 18 | 3 | 0 | 15 |
-| **Total** | **176** | **70** | **0** | **106** |
+| **Total** | **177** | **71** | **0** | **106** |
 
 > Conteo recalculado programáticamente contando los checkmarks reales de cada tabla, no a mano —
 > la tabla anterior tenía errores aritméticos genuinos (no solo desactualización): E1 decía 0
@@ -263,6 +263,7 @@
 | DOC-25 | docs/especies/N4-psilocybe.md | 🔴 | 0 | ✅ |
 | DOC-26 | docs/especies/N4-chaga.md (documentada, sin perfil JSON — ver CUL-22) | 🟡 | 0 | ✅ |
 | DOC-27 | docs/especies/N4-trufas.md (documentada, sin perfil JSON — ver CUL-23) | 🟢 | 0 | ✅ |
+| DOC-28 | docs/capsula/SOP-primer-despliegue.md — guía secuencial gateway + cápsula + firmware + primera prueba | 🔴 | 1 | ✅ |
 
 ---
 

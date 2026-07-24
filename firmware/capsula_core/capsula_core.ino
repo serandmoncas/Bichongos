@@ -39,6 +39,7 @@ static unsigned long lastWifiRetry = 0;
 static unsigned long lastMqttRetry = 0;
 static unsigned long offlineSince  = 0;
 static bool          wasOffline    = false;
+static uint32_t      controlTickCount = 0; // cuenta ciclos de control, usado para el pulso de ventilacion en conflicto frio/CO2
 
 // ─── Callbacks para comandos MQTT entrantes ────────────────────────────────
 static bool profileIdIsSafe(const char* id) {
@@ -106,8 +107,18 @@ ActuatorState computeControl(const SensorData& s, const Profile& p) {
     next.extractor = false;
   }
 
-  // Calefactor y extractor no deben ser simultáneos
-  if (next.calefactor && next.extractor) next.extractor = false;
+  // Conflicto: calefactor necesario y CO2 en zona critica a la vez (caso normal de Enoki).
+  // En vez de apagar el extractor por completo, se ventila en pulsos cortos:
+  // el ciclo de control corre cada 30s (SENSOR_INTERVAL_MS), asi que "30s ON / 90s OFF"
+  // se logra activando el extractor solo 1 de cada 4 ciclos.
+  if (next.calefactor && next.extractor) {
+    bool co2Critico = (!s.errorMHZ19) && (s.co2Ppm > p.alertas.co2CriticoMax);
+    if (co2Critico) {
+      next.extractor = (controlTickCount % 4 == 0);
+    } else {
+      next.extractor = false;
+    }
+  }
 
   // LED — controlado por horario de la etapa
   next.led = false;
@@ -272,6 +283,7 @@ void loop() {
 
   if (!activeProfile.loaded) return; // sin perfil → solo esperar
 
+  controlTickCount++;
   SensorData    s = readAllSensors();
   ActuatorState a = computeControl(s, activeProfile);
   setAllActuators(a);
